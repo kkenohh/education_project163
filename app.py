@@ -15,21 +15,23 @@ INCOME_DF = dp.clean_income_data()
 EDU_RACES = EDU_DF["Race"].sort_values().unique()
 EDU_DEGREES = EDU_DF['Attainment Level'].sort_values().unique()
 
-# Dash app stuff {
+# Create Dash app
 app = Dash(__name__)
 
+# Create Dropdown menus
 race_dropdown = dcc.Dropdown(options=EDU_RACES, value=EDU_RACES[0])
 degree_dropdown = dcc.Dropdown(options=EDU_DEGREES, value=EDU_DEGREES[0])
 
-dcc.Markdown('./README.md')
+# dcc.Markdown('./README.md')
 
+# Create layout for this page
 app.layout = html.Div(children=[
     html.H1(children='Education Attainment Over Time, per Race'),
     race_dropdown,
     dcc.Graph(id='attainment')
 ], className='whole-page')
 
-
+# input, output graph 1
 @app.callback(
     Output(component_id='attainment', component_property='figure'),
     Input(component_id=race_dropdown, component_property='value')
