@@ -1,10 +1,14 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
 
 *, *::before, *::after {
-    margin: 0;
-    padding: 0;
+
 }
 
 body {
     font-family: 'Montserrat';
+}
+
+.whole-page {
+    font-family: 'Montserrat';
+    
 }
