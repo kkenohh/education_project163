@@ -1,14 +1,28 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
 
 *, *::before, *::after {
-
+    
 }
 
 body {
     font-family: 'Montserrat';
+    background-color: #ffa981;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .whole-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     font-family: 'Montserrat';
-    
+    max-width: 1200px;
+}
+
+.dropdown {
+    width: 700px;
+    margin: 10px 0;
 }
