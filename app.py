@@ -19,14 +19,16 @@ EDU_DEGREES = EDU_DF['Attainment Label'].sort_values().unique()
 app = Dash(__name__)
 
 # Create Dropdown menus
-race_dropdown = dcc.Dropdown(options=EDU_RACES, value=EDU_RACES[0], className='dropdown')
+race_dropdown = dcc.Dropdown(options=EDU_RACES, value=EDU_RACES[0],
+                             className='dropdown')
 degree_dropdown = dcc.Dropdown(options=EDU_DEGREES, value=EDU_DEGREES[0])
 
 # dcc.Markdown('./README.md')
 
 # Create layout for this page
 app.layout = html.Div(children=[
-    html.H1(children='Education Attainment Over Time, per Race (in Washington)'),
+    html.H1(children='Education Attainment Over Time, \
+            per Race (in Washington)'),
     race_dropdown,
     dcc.Graph(id='attainment')
 ], className='whole-page')
@@ -39,9 +41,13 @@ app.layout = html.Div(children=[
 )
 def attainment_over_time(race):
     df = EDU_DF[['Year', 'Race', 'Estimate Population', 'Attainment Label']]
-    df = df[(df['Race'] == race) & (df['Attainment Label'] != 'Some college, no degree')]
-    df = df.groupby(['Year', 'Attainment Label'], as_index=False)['Estimate Population'].sum()
-    chart = px.line(df, x='Year', y='Estimate Population', color='Attainment Label', markers=True)
+    race_mask = df['Race'] == race
+    degree_mask = df['Attainment Label'] != 'Some college, no degree'
+    df = df[race_mask & degree_mask]
+    df = df.groupby(['Year', 'Attainment Label'],
+                    as_index=False)['Estimate Population'].sum()
+    chart = px.line(df, x='Year', y='Estimate Population',
+                    color='Attainment Label', markers=True)
     return chart
 
 
