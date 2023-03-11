@@ -1,11 +1,8 @@
-import geopandas as gpd
 import pandas as pd
-import re
-
 
 
 def clean_edu_data() -> pd.DataFrame:
-    edu_data = pd.read_csv('educational_attainment.csv')
+    edu_data = pd.read_csv('data/educational_attainment.csv')
     edu_data = edu_data.drop(columns=['StdDev'])
     edu_data = edu_data.rename(columns={
       'F_age_cat': 'Age range',
@@ -26,36 +23,51 @@ def clean_income_data(data) -> pd.DataFrame:
     data = data.drop([0, 21, 22])
     data = data.drop(range(2, 15))
     cols = data.columns.drop('Label (Grouping)')
-    data[cols] = data[cols].apply(lambda x: x.str.replace(',', '').astype(float))
+    data[cols] = data[cols].apply(
+                 lambda x: x.str.replace(',', '').astype(float))
 
     # rename columns
     data = data.rename(columns={
-        'Chelan & Douglas Counties PUMA, Washington!!Total!!Estimate': 'Chelan & Douglas Counties',
-        'Clallam & Jefferson Counties PUMA, Washington!!Total!!Estimate': 'Clallam & Jefferson Counties',
-        'Cowlitz, Pacific & Wahkiakum Counties PUMA; Washington!!Total!!Estimate': 'Cowlitz, Pacific & Wahkiakum Counties',
-        'Grant & Kittitas Counties PUMA, Washington!!Total!!Estimate': 'Grant & Kittitas Counties',
-        'Grays Harbor & Mason Counties PUMA, Washington!!Total!!Estimate': 'Grays Harbor & Mason Counties',
-        'Lewis, Klickitat & Skamania Counties PUMA; Washington!!Total!!Estimate': 'Lewis, Klickitat & Skamania Counties',
-        'Skagit, Island & San Juan Counties PUMA; Washington!!Total!!Estimate': 'Skajit, Island & San Juan Counties',
-        'Stevens, Okanogan, Pend Oreille & Ferry Counties PUMA; Washington!!Total!!Estimate': 'Stevens, Okanogan, Pend Oreille & Ferry Counties',
-        'Whatcom County--Bellingham City PUMA, Washington!!Total!!Estimate': 'Whatcom County--Bellingham City',
-        'Whitman, Asotin, Adams, Lincoln, Columbia & Garfield Counties PUMA; Washington!!Total!!Estimate': 'Whitman, Asotin, Adams, Lincoln, Columbia & Garfield Counties',
-        'Label (Grouping)': 'Label',
-        'Washington!!Total!!Estimate': 'Washington'
+      'Chelan & Douglas Counties PUMA, Washington!!Total!!Estimate':
+      'Chelan & Douglas Counties',
+      'Clallam & Jefferson Counties PUMA, Washington!!Total!!Estimate':
+      'Clallam & Jefferson Counties',
+      'Cowlitz, Pacific & Wahkiakum Counties PUMA; Washington!!Total!!Estimate':
+      'Cowlitz, Pacific & Wahkiakum Counties',
+      'Grant & Kittitas Counties PUMA, Washington!!Total!!Estimate':
+      'Grant & Kittitas Counties',
+      'Grays Harbor & Mason Counties PUMA, Washington!!Total!!Estimate':
+      'Grays Harbor & Mason Counties',
+      'Lewis, Klickitat & Skamania Counties PUMA; Washington!!Total!!Estimate':
+      'Lewis, Klickitat & Skamania Counties',
+      'Skagit, Island & San Juan Counties PUMA; Washington!!Total!!Estimate':
+      'Skajit, Island & San Juan Counties',
+      'Stevens, Okanogan, Pend Oreille & Ferry Counties PUMA; Washington!!Total!!Estimate':
+      'Stevens, Okanogan, Pend Oreille & Ferry Counties',
+      'Whatcom County--Bellingham City PUMA, Washington!!Total!!Estimate':
+      'Whatcom County--Bellingham City',
+      'Whitman, Asotin, Adams, Lincoln, Columbia & Garfield Counties PUMA; Washington!!Total!!Estimate':
+      'Whitman, Asotin, Adams, Lincoln, Columbia & Garfield Counties',
+      'Label (Grouping)': 'Label',
+      'Washington!!Total!!Estimate': 'Washington'
     })
 
     # benton
     benton = data[data.filter(like='Benton').columns]
     sample = benton.copy()
     sample['Benton, Franklin, Kennewick, Richland & Walla Walla Counties'] = sample.sum(axis=1)
-    sample = sample.drop(columns=['Benton & Franklin Counties--Pasco, Richland (North) & West Richland Cities PUMA; Washington!!Total!!Estimate',
-                                  'Benton County (East Central)--Kennewick & Richland (South) Cities PUMA, Washington!!Total!!Estimate',
-                                  'Walla Walla, Benton (Outer) & Franklin (Outer) Counties PUMA; Washington!!Total!!Estimate'])
+    sample = sample.drop(columns=[
+        'Benton & Franklin Counties--Pasco, Richland (North) & West Richland Cities PUMA; Washington!!Total!!Estimate',
+        'Benton County (East Central)--Kennewick & Richland (South) Cities PUMA, Washington!!Total!!Estimate',
+        'Walla Walla, Benton (Outer) & Franklin (Outer) Counties PUMA; Washington!!Total!!Estimate'
+    ])
 
     data['Benton, Franklin, Kennewick, Richland & Walla Walla Counties'] = sample['Benton, Franklin, Kennewick, Richland & Walla Walla Counties']
-    data = data.drop(columns=['Benton & Franklin Counties--Pasco, Richland (North) & West Richland Cities PUMA; Washington!!Total!!Estimate',
-                                  'Benton County (East Central)--Kennewick & Richland (South) Cities PUMA, Washington!!Total!!Estimate',
-                                  'Walla Walla, Benton (Outer) & Franklin (Outer) Counties PUMA; Washington!!Total!!Estimate'])
+    data = data.drop(columns=[
+      'Benton & Franklin Counties--Pasco, Richland (North) & West Richland Cities PUMA; Washington!!Total!!Estimate',
+      'Benton County (East Central)--Kennewick & Richland (South) Cities PUMA, Washington!!Total!!Estimate',
+      'Walla Walla, Benton (Outer) & Franklin (Outer) Counties PUMA; Washington!!Total!!Estimate'
+    ])
 
     # clark
     clark = data[data.filter(like='Clark').columns]
@@ -167,7 +179,7 @@ def clean_income_data(data) -> pd.DataFrame:
             'Seattle City (Southeast)--Capitol Hill PUMA, Washington!!Total!!Estimate',
             'Seattle City (West)--Duwamish & Beacon Hill PUMA, Washington!!Total!!Estimate'])
 
-    #clean data
+    # clean data
     cleaned = data
     cleaned = cleaned.T
     cleaned.columns = cleaned.iloc[0]
@@ -180,7 +192,10 @@ def clean_income_data(data) -> pd.DataFrame:
 '''
 Clean health outcomes datasets
 '''
-def clean_health_data(data):
+
+
+def clean_health_data(filename):
+    data = pd.read_csv(filename)
     no_nan = data.dropna()
 
     # drop unneeded columns
@@ -188,28 +203,29 @@ def clean_health_data(data):
 
     # convert percentage column to float
     regex = {r"\(NR\)": ""}
-    df['Percentage'] = df['Percentage'].replace(regex, regex=True).astype(float)
-
+    df['Percentage'] = df['Percentage'].\
+                       replace(regex, regex=True).astype(float)
 
     df = df.reindex([3, 11, 36, 4, 9, 5, 16, 6, 8, 25, 35, 13, 19, 14, 23,
-                             17, 18, 21, 20, 30, 27, 29, 15, 28, 31, 32, 33, 24, 26,
-                             10, 34, 37, 38, 2, 1, 22, 7, 12, 39])
+                    17, 18, 21, 20, 30, 27, 29, 15, 28, 31, 32, 33,
+                    24, 26, 10, 34, 37, 38, 2, 1, 22, 7, 12, 39])
     df = df.reset_index(drop=True)
 
     # create a new dataFrame with info by PUMA region code
-    by_puma = pd.DataFrame(columns=['County', 'Count', 'Population', 'Percentage'])
+    by_puma = pd.DataFrame(columns=['County', 'Count',
+                                    'Population', 'Percentage'])
 
-    #benton
+    # benton
     benton = df.iloc[1:2].sum()
 
     by_puma = by_puma.append(benton.transpose(), ignore_index=True)
 
-    #chelan
+    # chelan
     chelan = df.iloc[3:4].sum()
 
     by_puma = by_puma.append(chelan.transpose(), ignore_index=True)
 
-    #clallam
+    # clallam
     clallam = df.iloc[5:6].sum()
 
     by_puma = by_puma.append(clallam.transpose(), ignore_index=True)
@@ -217,17 +233,17 @@ def clean_health_data(data):
     # clark
     by_puma.loc[len(by_puma.index)] = df.loc[7]
 
-    #pacific
+    # pacific
     pacific = df.iloc[8:10].sum()
 
     by_puma = by_puma.append(pacific.transpose(), ignore_index=True)
 
-    #grant
+    # grant
     grant = df.iloc[11:12].sum()
 
     by_puma = by_puma.append(grant.transpose(), ignore_index=True)
 
-    #grays harbor
+    # grays harbor
     grays = df.iloc[13:14].sum()
 
     by_puma = by_puma.append(grays.transpose(), ignore_index=True)
@@ -236,15 +252,15 @@ def clean_health_data(data):
     by_puma.loc[len(by_puma.index)] = df.loc[15]
     by_puma.loc[len(by_puma.index)] = df.loc[16]
 
-    #lewis
+    # lewis
     lewis = df.iloc[17:19].sum()
 
     by_puma = by_puma.append(lewis.transpose(), ignore_index=True)
 
-    #pierce
+    # pierce
     by_puma.loc[len(by_puma.index)] = df.loc[20]
 
-    #skagit
+    # skagit
     skagit = df.iloc[21:23].sum()
 
     by_puma = by_puma.append(skagit.transpose(), ignore_index=True)
@@ -262,15 +278,15 @@ def clean_health_data(data):
     by_puma.loc[len(by_puma.index)] = df.loc[30]
     by_puma.loc[len(by_puma.index)] = df.loc[31]
 
-    #whitman
+    # whitman
     whitman = df.iloc[32:37].sum()
 
     by_puma = by_puma.append(whitman.transpose(), ignore_index=True)
 
-    #yakima
+    # yakima
     by_puma.loc[len(by_puma.index)] = df.loc[38]
 
-    #rename county column
+    # rename county column
     regions = [
        'Benton, Franklin, Kennewick, Richland & Walla Walla Counties',
        'Chelan & Douglas Counties', 'Clallam & Jefferson Counties',
@@ -288,8 +304,11 @@ def clean_health_data(data):
     county = by_puma['County'].unique()
     by_puma['County'] = by_puma['County'].replace(county, regions)
 
-    #change column's name
-    by_puma = by_puma.rename(columns={'County': 'Regions'})
+    # change column's name
+    name = filename.split('.')[0].split('/')[1]
+    by_puma = by_puma.rename(columns={'County': 'Regions',
+                                      'Count': 'Count_' + name,
+                                      'Population': 'Population_' + name,
+                                      'Percentage': 'Percentage_' + name})
 
     return by_puma
-
