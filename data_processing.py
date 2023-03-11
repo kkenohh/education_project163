@@ -19,7 +19,8 @@ def clean_edu_data() -> pd.DataFrame:
     return clean_edu_data
 
 
-def clean_income_data(data) -> pd.DataFrame:
+def clean_income_data(filename: str) -> pd.DataFrame:
+    data = pd.read_csv(filename)
     data = data.drop([0, 21, 22])
     data = data.drop(range(2, 15))
     cols = data.columns.drop('Label (Grouping)')
@@ -116,14 +117,17 @@ def clean_income_data(data) -> pd.DataFrame:
     new['sum'] = new.sum(axis=1)
 
     data['Pierce County'] = new['sum']
-    data = data.drop(columns=[
+    data = data.drop(
+      columns=[
         'Pierce County (Central)--Tacoma City (Central) PUMA, Washington!!Total!!Estimate',
         'Pierce County (Northwest)--Peninsula Region & Tacoma City (West) PUMA, Washington!!Total!!Estimate',
         'Pierce County (West Central)--Lakewood City & Joint Base Lewis-McChord PUMA, Washington!!Total!!Estimate',
         'Pierce County (South Central)--Tacoma City (South), Parkland & Spanaway PUMA; Washington!!Total!!Estimate',
         'Pierce County (North Central)--Tacoma (Port) & Bonney Lake (Northwest) Cities PUMA, Washington!!Total!!Estimate',
         'Pierce County (East Central)--Puyallup City & South Hill PUMA, Washington!!Total!!Estimate',
-        'Pierce County (Southeast)--Graham, Elk Plain & Prairie Ridge PUMA; Washington!!Total!!Estimate'])
+        'Pierce County (Southeast)--Graham, Elk Plain & Prairie Ridge PUMA; Washington!!Total!!Estimate'
+      ]
+    )
 
     # spokane
     spokane = data[data.filter(like='Spokane').columns]
@@ -131,11 +135,14 @@ def clean_income_data(data) -> pd.DataFrame:
     new['sum'] = new.sum(axis=1)
 
     data['Spokane County'] = new['sum']
-    data = data.drop(columns=[
+    data = data.drop(
+      columns=[
         'Spokane County (North Central)--Spokane City (North) PUMA, Washington!!Total!!Estimate',
         'Spokane County (South Central)--Spokane City (South) PUMA, Washington!!Total!!Estimate',
         'Spokane County (East Central)--Greater Spokane Valley City PUMA, Washington!!Total!!Estimate',
-        'Spokane County (Outer)--Cheney City PUMA, Washington!!Total!!Estimate'])
+        'Spokane County (Outer)--Cheney City PUMA, Washington!!Total!!Estimate'
+      ]
+    )
 
     # snohomish
     snohomish = data[data.filter(like='Snohomish').columns]
@@ -143,13 +150,16 @@ def clean_income_data(data) -> pd.DataFrame:
     new['sum'] = new.sum(axis=1)
 
     data['Snohomish County'] = new['sum']
-    data = data.drop(columns=[
-      'Snohomish County (South Central)--Bothell (North), Mill Creek Cities & Silver Firs PUMA; Washington!!Total!!Estimate',
-      'Snohomish County (Central & Southeast)--Lake Stevens & Monroe Cities PUMA, Washington!!Total!!Estimate',
-      'Snohomish County (North)--Marysville & Arlington Cities PUMA, Washington!!Total!!Estimate',
-      'Snohomish County (Southwest)--Edmonds, Lynnwood & Mountlake Terrace Cities PUMA; Washington!!Total!!Estimate',
-      'Snohomish County (West Central)--Mukilteo & Everett (Southwest) Cities PUMA, Washington!!Total!!Estimate',
-      'Snohomish County (Central)--Everett City (Central & East) & Eastmont PUMA, Washington!!Total!!Estimate'])
+    data = data.drop(
+      columns=[
+        'Snohomish County (South Central)--Bothell (North), Mill Creek Cities & Silver Firs PUMA; Washington!!Total!!Estimate',
+        'Snohomish County (Central & Southeast)--Lake Stevens & Monroe Cities PUMA, Washington!!Total!!Estimate',
+        'Snohomish County (North)--Marysville & Arlington Cities PUMA, Washington!!Total!!Estimate',
+        'Snohomish County (Southwest)--Edmonds, Lynnwood & Mountlake Terrace Cities PUMA; Washington!!Total!!Estimate',
+        'Snohomish County (West Central)--Mukilteo & Everett (Southwest) Cities PUMA, Washington!!Total!!Estimate',
+        'Snohomish County (Central)--Everett City (Central & East) & Eastmont PUMA, Washington!!Total!!Estimate'
+      ]
+    )
 
     # thurston
     thurston = data[data.filter(like='Thurston').columns]
@@ -157,9 +167,12 @@ def clean_income_data(data) -> pd.DataFrame:
     new['sum'] = new.sum(axis=1)
 
     data['Thurston County'] = new['sum']
-    data = data.drop(columns=[
+    data = data.drop(
+      columns=[
         'Thurston County (Central)--Olympia, Lacey & Tumwater Cities PUMA; Washington!!Total!!Estimate',
-        'Thurston County (Outer) PUMA, Washington!!Total!!Estimate'])
+        'Thurston County (Outer) PUMA, Washington!!Total!!Estimate'
+      ]
+    )
 
     # yakima
     yakima = data[data.filter(like='Yakima').columns]
@@ -167,17 +180,23 @@ def clean_income_data(data) -> pd.DataFrame:
     new['sum'] = new.sum(axis=1)
 
     data['Yakima County'] = new['sum']
-    data = data.drop(columns=[
+    data = data.drop(
+      columns=[
         'Yakima County (Central)--Greater Yakima City PUMA, Washington!!Total!!Estimate',
         'Yakima County (Outer)--Sunnyside & Grandview Cities PUMA, Washington!!Total!!Estimate',
-        ])
+      ]
+    )
 
     # drop unnecessary columns
-    data = data.drop(columns=['Seattle City (Northwest) PUMA, Washington!!Total!!Estimate',
-            'Seattle City (Northeast) PUMA, Washington!!Total!!Estimate',
-            'Seattle City (Downtown)--Queen Anne & Magnolia PUMA, Washington!!Total!!Estimate',
-            'Seattle City (Southeast)--Capitol Hill PUMA, Washington!!Total!!Estimate',
-            'Seattle City (West)--Duwamish & Beacon Hill PUMA, Washington!!Total!!Estimate'])
+    data = data.drop(
+      columns=[
+        'Seattle City (Northwest) PUMA, Washington!!Total!!Estimate',
+        'Seattle City (Northeast) PUMA, Washington!!Total!!Estimate',
+        'Seattle City (Downtown)--Queen Anne & Magnolia PUMA, Washington!!Total!!Estimate',
+        'Seattle City (Southeast)--Capitol Hill PUMA, Washington!!Total!!Estimate',
+        'Seattle City (West)--Duwamish & Beacon Hill PUMA, Washington!!Total!!Estimate'
+      ]
+    )
 
     # clean data
     cleaned = data
@@ -185,16 +204,29 @@ def clean_income_data(data) -> pd.DataFrame:
     cleaned.columns = cleaned.iloc[0]
     cleaned = cleaned.reset_index()
     cleaned = cleaned.drop(0)
+
+    # change column's name
     cleaned = cleaned.rename(columns={'index': 'Region'})
+
+    name = filename.split('.')[0].split('_')[2]
+    by_puma = by_puma.rename(columns={'County': 'Regions',
+                                      'Count': 'Count_' + name,
+                                      'Population': 'Population_' + name,
+                                      'Percentage': 'Percentage_' + name})
+
     return cleaned
 
+def create_income_dataset(files: list[str]) -> pd.DataFrame:
+    '''
+    Merge 5 datasets for 5 years into 1 dataframe
+    '''
 
-'''
-Clean health outcomes datasets
-'''
 
 
 def clean_health_data(filename):
+    '''
+    Clean health outcomes datasets
+    '''
     data = pd.read_csv(filename)
     no_nan = data.dropna()
 
@@ -312,3 +344,19 @@ def clean_health_data(filename):
                                       'Percentage': 'Percentage_' + name})
 
     return by_puma
+
+
+def main():
+    # load in income files
+    income_13 = 'median_income_2013.csv'
+    income_14 = 'median_income_2014.csv'
+    income_15 = 'median_income_2015.csv'
+    income_16 = 'median_income_2016.csv'
+    income_17 = 'median_income_2017.csv'
+
+    incomes = [income_13, income_14, income_15, income_16, income_17]
+    create_income_dataset(incomes)
+
+
+if __name__ == '__main__':
+    main()
