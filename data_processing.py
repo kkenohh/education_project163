@@ -1,5 +1,7 @@
 import geopandas as gpd
 import pandas as pd
+import re
+
 
 
 def clean_edu_data() -> pd.DataFrame:
@@ -61,10 +63,11 @@ def clean_income_data(data) -> pd.DataFrame:
     new['sum'] = new.sum(axis=1)
 
     data['Clark County'] = new['sum']
-    data = data.drop(columns=['Clark County (Southwest)--Vancouver City (West & Central) PUMA, Washington!!Total!!Estimate',
-                                            'Clark County (West Central)--Salmon Creek & Hazel Dell PUMA, Washington!!Total!!Estimate',
-                                            'Clark County (Southeast)--Vancouver (East), Camas & Washougal Cities PUMA; Washington!!Total!!Estimate',
-                                            'Clark County (North)--Battle Ground City & Orchards PUMA, Washington!!Total!!Estimate'])
+    data = data.drop(columns=[
+        'Clark County (Southwest)--Vancouver City (West & Central) PUMA, Washington!!Total!!Estimate',
+        'Clark County (West Central)--Salmon Creek & Hazel Dell PUMA, Washington!!Total!!Estimate',
+        'Clark County (Southeast)--Vancouver (East), Camas & Washougal Cities PUMA; Washington!!Total!!Estimate',
+        'Clark County (North)--Battle Ground City & Orchards PUMA, Washington!!Total!!Estimate'])
 
     # king
     king = data[data.filter(like='King').columns]
@@ -72,17 +75,18 @@ def clean_income_data(data) -> pd.DataFrame:
     new['sum'] = new.sum(axis=1)
 
     data['King County'] = new['sum']
-    data = data.drop(columns=['King County (Northwest)--Shoreline, Kenmore & Bothell (South) Cities PUMA; Washington!!Total!!Estimate',
-                                            'King County (Northwest)--Redmond, Kirkland Cities, Inglewood & Finn Hill PUMA; Washington!!Total!!Estimate',
-                                            'King County (Northwest Central)--Greater Bellevue City PUMA, Washington!!Total!!Estimate',
-                                            'King County (Central)--Sammamish, Issaquah, Mercer Island & Newcastle Cities PUMA; Washington!!Total!!Estimate',
-                                            'King County (Central)--Renton City, Fairwood, Bryn Mawr & Skyway PUMA; Washington!!Total!!Estimate',
-                                            'King County (West Central)--Burien, SeaTac, Tukwila Cities & White Center PUMA; Washington!!Total!!Estimate',
-                                            'King County (Far Southwest)--Federal Way, Des Moines Cities & Vashon Island PUMA; Washington!!Total!!Estimate',
-                                            'King County (Southwest Central)--Kent City PUMA, Washington!!Total!!Estimate',
-                                            'King County (Southwest)--Auburn City & Lakeland PUMA, Washington!!Total!!Estimate',
-                                            'King County (Southeast)--Maple Valley, Covington & Enumclaw Cities PUMA; Washington!!Total!!Estimate',
-                                            'King County (Northeast)--Snoqualmie City, Cottage Lake, Union Hill & Novelty Hill PUMA; Washington!!Total!!Estimate'])
+    data = data.drop(columns=[
+      'King County (Northwest)--Shoreline, Kenmore & Bothell (South) Cities PUMA; Washington!!Total!!Estimate',
+      'King County (Northwest)--Redmond, Kirkland Cities, Inglewood & Finn Hill PUMA; Washington!!Total!!Estimate',
+      'King County (Northwest Central)--Greater Bellevue City PUMA, Washington!!Total!!Estimate',
+      'King County (Central)--Sammamish, Issaquah, Mercer Island & Newcastle Cities PUMA; Washington!!Total!!Estimate',
+      'King County (Central)--Renton City, Fairwood, Bryn Mawr & Skyway PUMA; Washington!!Total!!Estimate',
+      'King County (West Central)--Burien, SeaTac, Tukwila Cities & White Center PUMA; Washington!!Total!!Estimate',
+      'King County (Far Southwest)--Federal Way, Des Moines Cities & Vashon Island PUMA; Washington!!Total!!Estimate',
+      'King County (Southwest Central)--Kent City PUMA, Washington!!Total!!Estimate',
+      'King County (Southwest)--Auburn City & Lakeland PUMA, Washington!!Total!!Estimate',
+      'King County (Southeast)--Maple Valley, Covington & Enumclaw Cities PUMA; Washington!!Total!!Estimate',
+      'King County (Northeast)--Snoqualmie City, Cottage Lake, Union Hill & Novelty Hill PUMA; Washington!!Total!!Estimate'])
 
     # kitsap
     kitsap = data[data.filter(like='Kitsap').columns]
@@ -90,8 +94,9 @@ def clean_income_data(data) -> pd.DataFrame:
     new['sum'] = new.sum(axis=1)
 
     data['Kitsap County'] = new['sum']
-    data = data.drop(columns=['Kitsap County (North)--Bainbridge Island City & Silverdale PUMA, Washington!!Total!!Estimate',
-                                            'Kitsap County (South)--Bremerton & Port Orchard Cities PUMA, Washington!!Total!!Estimate'])
+    data = data.drop(columns=[
+      'Kitsap County (North)--Bainbridge Island City & Silverdale PUMA, Washington!!Total!!Estimate',
+      'Kitsap County (South)--Bremerton & Port Orchard Cities PUMA, Washington!!Total!!Estimate'])
 
     # pierce
     pierce = data[data.filter(like='Pierce').columns]
@@ -99,13 +104,14 @@ def clean_income_data(data) -> pd.DataFrame:
     new['sum'] = new.sum(axis=1)
 
     data['Pierce County'] = new['sum']
-    data = data.drop(columns=['Pierce County (Central)--Tacoma City (Central) PUMA, Washington!!Total!!Estimate',
-                                            'Pierce County (Northwest)--Peninsula Region & Tacoma City (West) PUMA, Washington!!Total!!Estimate',
-                                            'Pierce County (West Central)--Lakewood City & Joint Base Lewis-McChord PUMA, Washington!!Total!!Estimate',
-                                            'Pierce County (South Central)--Tacoma City (South), Parkland & Spanaway PUMA; Washington!!Total!!Estimate',
-                                            'Pierce County (North Central)--Tacoma (Port) & Bonney Lake (Northwest) Cities PUMA, Washington!!Total!!Estimate',
-                                            'Pierce County (East Central)--Puyallup City & South Hill PUMA, Washington!!Total!!Estimate',
-                                            'Pierce County (Southeast)--Graham, Elk Plain & Prairie Ridge PUMA; Washington!!Total!!Estimate'])
+    data = data.drop(columns=[
+        'Pierce County (Central)--Tacoma City (Central) PUMA, Washington!!Total!!Estimate',
+        'Pierce County (Northwest)--Peninsula Region & Tacoma City (West) PUMA, Washington!!Total!!Estimate',
+        'Pierce County (West Central)--Lakewood City & Joint Base Lewis-McChord PUMA, Washington!!Total!!Estimate',
+        'Pierce County (South Central)--Tacoma City (South), Parkland & Spanaway PUMA; Washington!!Total!!Estimate',
+        'Pierce County (North Central)--Tacoma (Port) & Bonney Lake (Northwest) Cities PUMA, Washington!!Total!!Estimate',
+        'Pierce County (East Central)--Puyallup City & South Hill PUMA, Washington!!Total!!Estimate',
+        'Pierce County (Southeast)--Graham, Elk Plain & Prairie Ridge PUMA; Washington!!Total!!Estimate'])
 
     # spokane
     spokane = data[data.filter(like='Spokane').columns]
@@ -113,10 +119,11 @@ def clean_income_data(data) -> pd.DataFrame:
     new['sum'] = new.sum(axis=1)
 
     data['Spokane County'] = new['sum']
-    data = data.drop(columns=['Spokane County (North Central)--Spokane City (North) PUMA, Washington!!Total!!Estimate',
-                                            'Spokane County (South Central)--Spokane City (South) PUMA, Washington!!Total!!Estimate',
-                                            'Spokane County (East Central)--Greater Spokane Valley City PUMA, Washington!!Total!!Estimate',
-                                            'Spokane County (Outer)--Cheney City PUMA, Washington!!Total!!Estimate'])
+    data = data.drop(columns=[
+        'Spokane County (North Central)--Spokane City (North) PUMA, Washington!!Total!!Estimate',
+        'Spokane County (South Central)--Spokane City (South) PUMA, Washington!!Total!!Estimate',
+        'Spokane County (East Central)--Greater Spokane Valley City PUMA, Washington!!Total!!Estimate',
+        'Spokane County (Outer)--Cheney City PUMA, Washington!!Total!!Estimate'])
 
     # snohomish
     snohomish = data[data.filter(like='Snohomish').columns]
@@ -124,12 +131,13 @@ def clean_income_data(data) -> pd.DataFrame:
     new['sum'] = new.sum(axis=1)
 
     data['Snohomish County'] = new['sum']
-    data = data.drop(columns=['Snohomish County (South Central)--Bothell (North), Mill Creek Cities & Silver Firs PUMA; Washington!!Total!!Estimate',
-                                            'Snohomish County (Central & Southeast)--Lake Stevens & Monroe Cities PUMA, Washington!!Total!!Estimate',
-                                            'Snohomish County (North)--Marysville & Arlington Cities PUMA, Washington!!Total!!Estimate',
-                                            'Snohomish County (Southwest)--Edmonds, Lynnwood & Mountlake Terrace Cities PUMA; Washington!!Total!!Estimate',
-                                            'Snohomish County (West Central)--Mukilteo & Everett (Southwest) Cities PUMA, Washington!!Total!!Estimate',
-                                            'Snohomish County (Central)--Everett City (Central & East) & Eastmont PUMA, Washington!!Total!!Estimate'])
+    data = data.drop(columns=[
+      'Snohomish County (South Central)--Bothell (North), Mill Creek Cities & Silver Firs PUMA; Washington!!Total!!Estimate',
+      'Snohomish County (Central & Southeast)--Lake Stevens & Monroe Cities PUMA, Washington!!Total!!Estimate',
+      'Snohomish County (North)--Marysville & Arlington Cities PUMA, Washington!!Total!!Estimate',
+      'Snohomish County (Southwest)--Edmonds, Lynnwood & Mountlake Terrace Cities PUMA; Washington!!Total!!Estimate',
+      'Snohomish County (West Central)--Mukilteo & Everett (Southwest) Cities PUMA, Washington!!Total!!Estimate',
+      'Snohomish County (Central)--Everett City (Central & East) & Eastmont PUMA, Washington!!Total!!Estimate'])
 
     # thurston
     thurston = data[data.filter(like='Thurston').columns]
@@ -137,8 +145,9 @@ def clean_income_data(data) -> pd.DataFrame:
     new['sum'] = new.sum(axis=1)
 
     data['Thurston County'] = new['sum']
-    data = data.drop(columns=['Thurston County (Central)--Olympia, Lacey & Tumwater Cities PUMA; Washington!!Total!!Estimate',
-                                            'Thurston County (Outer) PUMA, Washington!!Total!!Estimate'])
+    data = data.drop(columns=[
+        'Thurston County (Central)--Olympia, Lacey & Tumwater Cities PUMA; Washington!!Total!!Estimate',
+        'Thurston County (Outer) PUMA, Washington!!Total!!Estimate'])
 
     # yakima
     yakima = data[data.filter(like='Yakima').columns]
@@ -146,9 +155,10 @@ def clean_income_data(data) -> pd.DataFrame:
     new['sum'] = new.sum(axis=1)
 
     data['Yakima County'] = new['sum']
-    data = data.drop(columns=['Yakima County (Central)--Greater Yakima City PUMA, Washington!!Total!!Estimate',
-                                            'Yakima County (Outer)--Sunnyside & Grandview Cities PUMA, Washington!!Total!!Estimate',
-                                            ])
+    data = data.drop(columns=[
+        'Yakima County (Central)--Greater Yakima City PUMA, Washington!!Total!!Estimate',
+        'Yakima County (Outer)--Sunnyside & Grandview Cities PUMA, Washington!!Total!!Estimate',
+        ])
 
     # drop unnecessary columns
     data = data.drop(columns=['Seattle City (Northwest) PUMA, Washington!!Total!!Estimate',
@@ -280,7 +290,6 @@ def clean_health_data(data):
 
     #change column's name
     by_puma = by_puma.rename(columns={'County': 'Regions'})
-
 
     return by_puma
 
