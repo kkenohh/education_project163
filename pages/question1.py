@@ -25,13 +25,18 @@ degree_dropdown = dcc.Dropdown(options=EDU_DEGREES, value=EDU_DEGREES[0])
 # Create layout for this page
 layout = html.Div(children=[
     html.H1(children='Education Attainment Over Time, \
-            per Race (in Washington)'),
+            per Race (in Washington)', className='graph-header'),
     html.Div(children=[
         html.Div([
             race_dropdown,
             dcc.Graph(id='attainment')
         ]),
-        dcc.Markdown('../README.md')
+        dcc.Markdown('''
+        # What did we find?
+
+        The thing that stood out the most after looking at the graphs is that
+        the majority of most races don't achieve a high school degree.
+        ''', className='markdown')
     ], className='question-one')
 ], className='whole-page')
 
