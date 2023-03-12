@@ -26,3 +26,31 @@ body {
     width: 700px;
     margin: 10px 0;
 }
+
+.nav-buttons {
+    width: auto;
+    height: auto;
+    padding: 10px;
+    margin: 10px 20px;
+    background-color: white;
+    border-radius: 10px;
+    border: 3px #5f5f5f solid;
+    transition: 1s;
+}
+
+.nav-buttons:hover {
+    transform: scale(1.5);
+}
+
+a {
+    color: #fc9566;
+}
+
+a:visited {
+    color: #fc9566;
+}
+
+.question-one {
+    display: flex;
+    
+}

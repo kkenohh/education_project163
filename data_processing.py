@@ -5,6 +5,7 @@ def clean_edu_data() -> pd.DataFrame:
     edu_data = pd.read_csv('data/educational_attainment.csv')
     edu_data = edu_data.drop(columns=['StdDev'])
     edu_data = edu_data.rename(columns={
+      'year': 'Year',
       'F_age_cat': 'Age range',
       'F_puma_recode_code': 'Puma Code',
       'F_puma_recode_label': 'Puma Label',
