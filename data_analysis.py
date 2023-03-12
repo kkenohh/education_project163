@@ -1,39 +1,67 @@
-import data_processing as dp
-
-EDU_DF = dp.clean_edu_data()
-
-
-def create_health_dataset(smoking, diabetes, drinking, mental_health):
-    '''
-    Join 4 datasets on 4 different health behaviors
-    '''
-    data = smoking.merge(diabetes, on='Regions').\
-        merge(drinking, on='Regions').\
-        merge(mental_health, on='Regions')
-    return data
+from sklearn.tree import DecisionTreeRegressor
+from sklearn.metrics import mean_squared_error
+from sklearn.model_selection import train_test_split
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.metrics import accuracy_score
+import pandas as pd
 
 
-def health_behaviors_by_attainment(health):
-    '''
-    Compare the trends of health behaviors for each educational attainment from
-    2013 - 2017
-    '''
-    edu_data = EDU_DF[['Puma Label', 'Attainment Label',
-                       'Estimate Population']]
-    by_attainment = edu_data.groupby('Puma Label', 'Attainment Label').sum()
+def predict_income(data: pd.DataFrame):
+    # one-hot encoding educational attainment and region
+    features = data.loc[:, data.columns != 'Median Income']
+    features = pd.get_dummies(features)
+    labels = data['Median Income']
 
-    data = by_attainment.merge(health, left_on='Puma Label',
-                               right_on='Regions', how='left')
-    return data
+    # create training and testing set
+    features_train, features_test, labels_train, labels_test = \
+        train_test_split(features, labels, test_size=0.3)
+
+    # build the model
+    model = DecisionTreeRegressor()
+
+    # train on the training set
+    model.fit(features_train, labels_train)
+
+    # assess the model
+    train_predict = model.predict(features_train)
+    train_acc = mean_squared_error(labels_train, train_predict)
+    print('train', train_acc)
+
+    test_predict = model.predict(features_test)
+    test_acc = mean_squared_error(labels_test, test_predict)
+    print('test', test_acc)
+
+
+def predict_attainment(data: pd.DataFrame):
+    # one-hot encoding educational attainment and region
+    features = data.loc[:, data.columns != 'Educational Attainment']
+    features = pd.get_dummies(features)
+    labels = data['Educational Attainment']
+
+    # create training and testing set
+    features_train, features_test, labels_train, labels_test = \
+        train_test_split(features, labels, test_size=0.3)
+
+    # build the model
+    model = DecisionTreeClassifier()
+
+    # train on the training set
+    model.fit(features_train, labels_train)
+
+    # assess the model
+    train_predict = model.predict(features_train)
+    train_acc = accuracy_score(labels_train, train_predict)
+    print('train', train_acc)
+
+    test_predict = model.predict(features_test)
+    test_acc = accuracy_score(labels_test, test_predict)
+    print('test', test_acc)
 
 
 def main():
-    smoking = dp.clean_health_data('data/smoking.csv')
-    diabetes = dp.clean_health_data('data/diabetes.csv')
-    drinking = dp.clean_health_data('data/binge_drinking.csv')
-    mental_health = dp.clean_health_data('data/poor_mental_health.csv')
-
-    create_health_dataset(smoking, diabetes, drinking, mental_health)
+    income = pd.read_csv('data/median_income.csv')
+    predict_income(income)
+    predict_attainment(income)
 
 
 if __name__ == '__main__':
