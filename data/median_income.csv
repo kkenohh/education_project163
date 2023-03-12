@@ -1,0 +1,501 @@
+Region,Year,Educational Attainment,Median Income
+Washington,2013,Less than High School,21550.0
+Washington,2013,High school,30595.0
+Washington,2013,College,35743.0
+Washington,2013,Bachelor,52013.0
+Washington,2013,Graduate,67087.0
+Whatcom County--Bellingham City,2013,Less than High School,17974.0
+Whatcom County--Bellingham City,2013,High school,28829.0
+Whatcom County--Bellingham City,2013,College,31249.0
+Whatcom County--Bellingham City,2013,Bachelor,41104.0
+Whatcom County--Bellingham City,2013,Graduate,51720.0
+"Skajit, Island & San Juan Counties",2013,Less than High School,17962.0
+"Skajit, Island & San Juan Counties",2013,High school,30850.0
+"Skajit, Island & San Juan Counties",2013,College,31993.0
+"Skajit, Island & San Juan Counties",2013,Bachelor,41720.0
+"Skajit, Island & San Juan Counties",2013,Graduate,60486.0
+Chelan & Douglas Counties,2013,Less than High School,25124.0
+Chelan & Douglas Counties,2013,High school,26195.0
+Chelan & Douglas Counties,2013,College,32170.0
+Chelan & Douglas Counties,2013,Bachelor,37938.0
+Chelan & Douglas Counties,2013,Graduate,61676.0
+"Stevens, Okanogan, Pend Oreille & Ferry Counties PUMA; Washington!!Total!!Estimate",2013,Less than High School,25325.0
+"Stevens, Okanogan, Pend Oreille & Ferry Counties PUMA; Washington!!Total!!Estimate",2013,High school,24632.0
+"Stevens, Okanogan, Pend Oreille & Ferry Counties PUMA; Washington!!Total!!Estimate",2013,College,26994.0
+"Stevens, Okanogan, Pend Oreille & Ferry Counties PUMA; Washington!!Total!!Estimate",2013,Bachelor,36000.0
+"Stevens, Okanogan, Pend Oreille & Ferry Counties PUMA; Washington!!Total!!Estimate",2013,Graduate,62043.0
+"Whitman, Asotin, Adams, Lincoln, Columbia & Garfield Counties PUMA; Washington!!Total!!Estimate",2013,Less than High School,22274.0
+"Whitman, Asotin, Adams, Lincoln, Columbia & Garfield Counties PUMA; Washington!!Total!!Estimate",2013,High school,27536.0
+"Whitman, Asotin, Adams, Lincoln, Columbia & Garfield Counties PUMA; Washington!!Total!!Estimate",2013,College,30670.0
+"Whitman, Asotin, Adams, Lincoln, Columbia & Garfield Counties PUMA; Washington!!Total!!Estimate",2013,Bachelor,36534.0
+"Whitman, Asotin, Adams, Lincoln, Columbia & Garfield Counties PUMA; Washington!!Total!!Estimate",2013,Graduate,52942.0
+Grant & Kittitas Counties,2013,Less than High School,21093.0
+Grant & Kittitas Counties,2013,High school,27925.0
+Grant & Kittitas Counties,2013,College,31918.0
+Grant & Kittitas Counties,2013,Bachelor,35940.0
+Grant & Kittitas Counties,2013,Graduate,60647.0
+"Lewis, Klickitat & Skamania Counties PUMA; Washington!!Total!!Estimate",2013,Less than High School,19127.0
+"Lewis, Klickitat & Skamania Counties PUMA; Washington!!Total!!Estimate",2013,High school,26195.0
+"Lewis, Klickitat & Skamania Counties PUMA; Washington!!Total!!Estimate",2013,College,30152.0
+"Lewis, Klickitat & Skamania Counties PUMA; Washington!!Total!!Estimate",2013,Bachelor,39301.0
+"Lewis, Klickitat & Skamania Counties PUMA; Washington!!Total!!Estimate",2013,Graduate,56923.0
+"Cowlitz, Pacific & Wahkiakum Counties PUMA; Washington!!Total!!Estimate",2013,Less than High School,25806.0
+"Cowlitz, Pacific & Wahkiakum Counties PUMA; Washington!!Total!!Estimate",2013,High school,22929.0
+"Cowlitz, Pacific & Wahkiakum Counties PUMA; Washington!!Total!!Estimate",2013,College,33086.0
+"Cowlitz, Pacific & Wahkiakum Counties PUMA; Washington!!Total!!Estimate",2013,Bachelor,46558.0
+"Cowlitz, Pacific & Wahkiakum Counties PUMA; Washington!!Total!!Estimate",2013,Graduate,51485.0
+Grays Harbor & Mason Counties,2013,Less than High School,24513.0
+Grays Harbor & Mason Counties,2013,High school,24887.0
+Grays Harbor & Mason Counties,2013,College,31316.0
+Grays Harbor & Mason Counties,2013,Bachelor,39224.0
+Grays Harbor & Mason Counties,2013,Graduate,61531.0
+Clallam & Jefferson Counties,2013,Less than High School,17365.0
+Clallam & Jefferson Counties,2013,High school,24569.0
+Clallam & Jefferson Counties,2013,College,28776.0
+Clallam & Jefferson Counties,2013,Bachelor,40185.0
+Clallam & Jefferson Counties,2013,Graduate,41526.0
+"Benton, Franklin, Kennewick, Richland & Walla Walla Counties",2013,Less than High School,66764.0
+"Benton, Franklin, Kennewick, Richland & Walla Walla Counties",2013,High school,83018.0
+"Benton, Franklin, Kennewick, Richland & Walla Walla Counties",2013,College,98774.0
+"Benton, Franklin, Kennewick, Richland & Walla Walla Counties",2013,Bachelor,171509.0
+"Benton, Franklin, Kennewick, Richland & Walla Walla Counties",2013,Graduate,181911.0
+Clark County,2013,Less than High School,104405.0
+Clark County,2013,High school,126349.0
+Clark County,2013,College,143453.0
+Clark County,2013,Bachelor,206466.0
+Clark County,2013,Graduate,230411.0
+King County,2013,Less than High School,232618.0
+King County,2013,High school,359183.0
+King County,2013,College,446323.0
+King County,2013,Bachelor,670313.0
+King County,2013,Graduate,843098.0
+Kitsap County,2013,Less than High School,46878.0
+Kitsap County,2013,High school,60607.0
+Kitsap County,2013,College,77252.0
+Kitsap County,2013,Bachelor,116018.0
+Kitsap County,2013,Graduate,125348.0
+Pierce County,2013,Less than High School,163311.0
+Pierce County,2013,High school,223870.0
+Pierce County,2013,College,275689.0
+Pierce County,2013,Bachelor,358501.0
+Pierce County,2013,Graduate,390332.0
+Spokane County,2013,Less than High School,75948.0
+Spokane County,2013,High school,112038.0
+Spokane County,2013,College,122523.0
+Spokane County,2013,Bachelor,161174.0
+Spokane County,2013,Graduate,243155.0
+Snohomish County,2013,Less than High School,158334.0
+Snohomish County,2013,High school,216360.0
+Snohomish County,2013,College,244110.0
+Snohomish County,2013,Bachelor,341805.0
+Snohomish County,2013,Graduate,415438.0
+Thurston County,2013,Less than High School,51006.0
+Thurston County,2013,High school,60948.0
+Thurston County,2013,College,80089.0
+Thurston County,2013,Bachelor,100176.0
+Thurston County,2013,Graduate,132999.0
+Yakima County,2013,Less than High School,39655.0
+Yakima County,2013,High school,52623.0
+Yakima County,2013,College,57224.0
+Yakima County,2013,Bachelor,73317.0
+Yakima County,2013,Graduate,119275.0
+Washington,2014,Less than High School,22799.0
+Washington,2014,High school,31016.0
+Washington,2014,College,35409.0
+Washington,2014,Bachelor,54844.0
+Washington,2014,Graduate,70746.0
+Whatcom County--Bellingham City,2014,Less than High School,25051.0
+Whatcom County--Bellingham City,2014,High school,31085.0
+Whatcom County--Bellingham City,2014,College,31524.0
+Whatcom County--Bellingham City,2014,Bachelor,40245.0
+Whatcom County--Bellingham City,2014,Graduate,51598.0
+"Skajit, Island & San Juan Counties",2014,Less than High School,22904.0
+"Skajit, Island & San Juan Counties",2014,High school,31878.0
+"Skajit, Island & San Juan Counties",2014,College,31419.0
+"Skajit, Island & San Juan Counties",2014,Bachelor,39298.0
+"Skajit, Island & San Juan Counties",2014,Graduate,61189.0
+Chelan & Douglas Counties,2014,Less than High School,22199.0
+Chelan & Douglas Counties,2014,High school,30217.0
+Chelan & Douglas Counties,2014,College,33108.0
+Chelan & Douglas Counties,2014,Bachelor,41685.0
+Chelan & Douglas Counties,2014,Graduate,45619.0
+"Stevens, Okanogan, Pend Oreille & Ferry Counties PUMA; Washington!!Total!!Estimate",2014,Less than High School,19905.0
+"Stevens, Okanogan, Pend Oreille & Ferry Counties PUMA; Washington!!Total!!Estimate",2014,High school,24822.0
+"Stevens, Okanogan, Pend Oreille & Ferry Counties PUMA; Washington!!Total!!Estimate",2014,College,26902.0
+"Stevens, Okanogan, Pend Oreille & Ferry Counties PUMA; Washington!!Total!!Estimate",2014,Bachelor,42052.0
+"Stevens, Okanogan, Pend Oreille & Ferry Counties PUMA; Washington!!Total!!Estimate",2014,Graduate,51400.0
+"Whitman, Asotin, Adams, Lincoln, Columbia & Garfield Counties PUMA; Washington!!Total!!Estimate",2014,Less than High School,25187.0
+"Whitman, Asotin, Adams, Lincoln, Columbia & Garfield Counties PUMA; Washington!!Total!!Estimate",2014,High school,27667.0
+"Whitman, Asotin, Adams, Lincoln, Columbia & Garfield Counties PUMA; Washington!!Total!!Estimate",2014,College,30986.0
+"Whitman, Asotin, Adams, Lincoln, Columbia & Garfield Counties PUMA; Washington!!Total!!Estimate",2014,Bachelor,38716.0
+"Whitman, Asotin, Adams, Lincoln, Columbia & Garfield Counties PUMA; Washington!!Total!!Estimate",2014,Graduate,47214.0
+Grant & Kittitas Counties,2014,Less than High School,22600.0
+Grant & Kittitas Counties,2014,High school,30114.0
+Grant & Kittitas Counties,2014,College,31309.0
+Grant & Kittitas Counties,2014,Bachelor,45669.0
+Grant & Kittitas Counties,2014,Graduate,51730.0
+"Lewis, Klickitat & Skamania Counties PUMA; Washington!!Total!!Estimate",2014,Less than High School,20348.0
+"Lewis, Klickitat & Skamania Counties PUMA; Washington!!Total!!Estimate",2014,High school,26592.0
+"Lewis, Klickitat & Skamania Counties PUMA; Washington!!Total!!Estimate",2014,College,30994.0
+"Lewis, Klickitat & Skamania Counties PUMA; Washington!!Total!!Estimate",2014,Bachelor,40823.0
+"Lewis, Klickitat & Skamania Counties PUMA; Washington!!Total!!Estimate",2014,Graduate,60622.0
+"Cowlitz, Pacific & Wahkiakum Counties PUMA; Washington!!Total!!Estimate",2014,Less than High School,25880.0
+"Cowlitz, Pacific & Wahkiakum Counties PUMA; Washington!!Total!!Estimate",2014,High school,26948.0
+"Cowlitz, Pacific & Wahkiakum Counties PUMA; Washington!!Total!!Estimate",2014,College,31319.0
+"Cowlitz, Pacific & Wahkiakum Counties PUMA; Washington!!Total!!Estimate",2014,Bachelor,41948.0
+"Cowlitz, Pacific & Wahkiakum Counties PUMA; Washington!!Total!!Estimate",2014,Graduate,53778.0
+Grays Harbor & Mason Counties,2014,Less than High School,20807.0
+Grays Harbor & Mason Counties,2014,High school,27851.0
+Grays Harbor & Mason Counties,2014,College,29429.0
+Grays Harbor & Mason Counties,2014,Bachelor,48268.0
+Grays Harbor & Mason Counties,2014,Graduate,45675.0
+Clallam & Jefferson Counties,2014,Less than High School,35369.0
+Clallam & Jefferson Counties,2014,High school,25588.0
+Clallam & Jefferson Counties,2014,College,27715.0
+Clallam & Jefferson Counties,2014,Bachelor,32392.0
+Clallam & Jefferson Counties,2014,Graduate,54034.0
+"Benton, Franklin, Kennewick, Richland & Walla Walla Counties",2014,Less than High School,75244.0
+"Benton, Franklin, Kennewick, Richland & Walla Walla Counties",2014,High school,88050.0
+"Benton, Franklin, Kennewick, Richland & Walla Walla Counties",2014,College,97031.0
+"Benton, Franklin, Kennewick, Richland & Walla Walla Counties",2014,Bachelor,169470.0
+"Benton, Franklin, Kennewick, Richland & Walla Walla Counties",2014,Graduate,183231.0
+Clark County,2014,Less than High School,103897.0
+Clark County,2014,High school,123325.0
+Clark County,2014,College,136521.0
+Clark County,2014,Bachelor,214861.0
+Clark County,2014,Graduate,238539.0
+King County,2014,Less than High School,283778.0
+King County,2014,High school,383980.0
+King County,2014,College,432161.0
+King County,2014,Bachelor,708158.0
+King County,2014,Graduate,845459.0
+Kitsap County,2014,Less than High School,49861.0
+Kitsap County,2014,High school,60381.0
+Kitsap County,2014,College,71570.0
+Kitsap County,2014,Bachelor,102537.0
+Kitsap County,2014,Graduate,151536.0
+Pierce County,2014,Less than High School,185326.0
+Pierce County,2014,High school,242766.0
+Pierce County,2014,College,263792.0
+Pierce County,2014,Bachelor,360750.0
+Pierce County,2014,Graduate,459205.0
+Spokane County,2014,Less than High School,73397.0
+Spokane County,2014,High school,103206.0
+Spokane County,2014,College,122914.0
+Spokane County,2014,Bachelor,199091.0
+Spokane County,2014,Graduate,247082.0
+Snohomish County,2014,Less than High School,149072.0
+Snohomish County,2014,High school,215049.0
+Snohomish County,2014,College,242068.0
+Snohomish County,2014,Bachelor,345418.0
+Snohomish County,2014,Graduate,445977.0
+Thurston County,2014,Less than High School,67375.0
+Thurston County,2014,High school,53044.0
+Thurston County,2014,College,80249.0
+Thurston County,2014,Bachelor,99556.0
+Thurston County,2014,Graduate,142312.0
+Yakima County,2014,Less than High School,40553.0
+Yakima County,2014,High school,52916.0
+Yakima County,2014,College,64795.0
+Yakima County,2014,Bachelor,97760.0
+Yakima County,2014,Graduate,116471.0
+Washington,2015,Less than High School,24751.0
+Washington,2015,High school,31319.0
+Washington,2015,College,37293.0
+Washington,2015,Bachelor,55795.0
+Washington,2015,Graduate,71123.0
+Whatcom County--Bellingham City,2015,Less than High School,24722.0
+Whatcom County--Bellingham City,2015,High school,33003.0
+Whatcom County--Bellingham City,2015,College,30113.0
+Whatcom County--Bellingham City,2015,Bachelor,38748.0
+Whatcom County--Bellingham City,2015,Graduate,50420.0
+"Skajit, Island & San Juan Counties",2015,Less than High School,25989.0
+"Skajit, Island & San Juan Counties",2015,High school,30419.0
+"Skajit, Island & San Juan Counties",2015,College,35594.0
+"Skajit, Island & San Juan Counties",2015,Bachelor,41591.0
+"Skajit, Island & San Juan Counties",2015,Graduate,60959.0
+Chelan & Douglas Counties,2015,Less than High School,25660.0
+Chelan & Douglas Counties,2015,High school,26779.0
+Chelan & Douglas Counties,2015,College,36674.0
+Chelan & Douglas Counties,2015,Bachelor,42357.0
+Chelan & Douglas Counties,2015,Graduate,62334.0
+"Stevens, Okanogan, Pend Oreille & Ferry Counties PUMA; Washington!!Total!!Estimate",2015,Less than High School,19825.0
+"Stevens, Okanogan, Pend Oreille & Ferry Counties PUMA; Washington!!Total!!Estimate",2015,High school,25031.0
+"Stevens, Okanogan, Pend Oreille & Ferry Counties PUMA; Washington!!Total!!Estimate",2015,College,31959.0
+"Stevens, Okanogan, Pend Oreille & Ferry Counties PUMA; Washington!!Total!!Estimate",2015,Bachelor,36383.0
+"Stevens, Okanogan, Pend Oreille & Ferry Counties PUMA; Washington!!Total!!Estimate",2015,Graduate,62684.0
+"Whitman, Asotin, Adams, Lincoln, Columbia & Garfield Counties PUMA; Washington!!Total!!Estimate",2015,Less than High School,21947.0
+"Whitman, Asotin, Adams, Lincoln, Columbia & Garfield Counties PUMA; Washington!!Total!!Estimate",2015,High school,30244.0
+"Whitman, Asotin, Adams, Lincoln, Columbia & Garfield Counties PUMA; Washington!!Total!!Estimate",2015,College,30801.0
+"Whitman, Asotin, Adams, Lincoln, Columbia & Garfield Counties PUMA; Washington!!Total!!Estimate",2015,Bachelor,32529.0
+"Whitman, Asotin, Adams, Lincoln, Columbia & Garfield Counties PUMA; Washington!!Total!!Estimate",2015,Graduate,43423.0
+Grant & Kittitas Counties,2015,Less than High School,22284.0
+Grant & Kittitas Counties,2015,High school,31308.0
+Grant & Kittitas Counties,2015,College,34573.0
+Grant & Kittitas Counties,2015,Bachelor,37485.0
+Grant & Kittitas Counties,2015,Graduate,66103.0
+"Lewis, Klickitat & Skamania Counties PUMA; Washington!!Total!!Estimate",2015,Less than High School,25020.0
+"Lewis, Klickitat & Skamania Counties PUMA; Washington!!Total!!Estimate",2015,High school,31027.0
+"Lewis, Klickitat & Skamania Counties PUMA; Washington!!Total!!Estimate",2015,College,35497.0
+"Lewis, Klickitat & Skamania Counties PUMA; Washington!!Total!!Estimate",2015,Bachelor,40103.0
+"Lewis, Klickitat & Skamania Counties PUMA; Washington!!Total!!Estimate",2015,Graduate,60550.0
+"Cowlitz, Pacific & Wahkiakum Counties PUMA; Washington!!Total!!Estimate",2015,Less than High School,18899.0
+"Cowlitz, Pacific & Wahkiakum Counties PUMA; Washington!!Total!!Estimate",2015,High school,30253.0
+"Cowlitz, Pacific & Wahkiakum Counties PUMA; Washington!!Total!!Estimate",2015,College,37229.0
+"Cowlitz, Pacific & Wahkiakum Counties PUMA; Washington!!Total!!Estimate",2015,Bachelor,51533.0
+"Cowlitz, Pacific & Wahkiakum Counties PUMA; Washington!!Total!!Estimate",2015,Graduate,52704.0
+Grays Harbor & Mason Counties,2015,Less than High School,18931.0
+Grays Harbor & Mason Counties,2015,High school,25315.0
+Grays Harbor & Mason Counties,2015,College,31803.0
+Grays Harbor & Mason Counties,2015,Bachelor,51182.0
+Grays Harbor & Mason Counties,2015,Graduate,70273.0
+Clallam & Jefferson Counties,2015,Less than High School,23194.0
+Clallam & Jefferson Counties,2015,High school,30450.0
+Clallam & Jefferson Counties,2015,College,30429.0
+Clallam & Jefferson Counties,2015,Bachelor,26133.0
+Clallam & Jefferson Counties,2015,Graduate,52140.0
+"Benton, Franklin, Kennewick, Richland & Walla Walla Counties",2015,Less than High School,61454.0
+"Benton, Franklin, Kennewick, Richland & Walla Walla Counties",2015,High school,91935.0
+"Benton, Franklin, Kennewick, Richland & Walla Walla Counties",2015,College,113804.0
+"Benton, Franklin, Kennewick, Richland & Walla Walla Counties",2015,Bachelor,155079.0
+"Benton, Franklin, Kennewick, Richland & Walla Walla Counties",2015,Graduate,197071.0
+Clark County,2015,Less than High School,113105.0
+Clark County,2015,High school,136377.0
+Clark County,2015,College,148422.0
+Clark County,2015,Bachelor,222799.0
+Clark County,2015,Graduate,253704.0
+King County,2015,Less than High School,301364.0
+King County,2015,High school,356446.0
+King County,2015,College,468146.0
+King County,2015,Bachelor,733113.0
+King County,2015,Graduate,865035.0
+Kitsap County,2015,Less than High School,45990.0
+Kitsap County,2015,High school,58576.0
+Kitsap County,2015,College,76405.0
+Kitsap County,2015,Bachelor,107694.0
+Kitsap County,2015,Graduate,120150.0
+Pierce County,2015,Less than High School,213952.0
+Pierce County,2015,High school,236877.0
+Pierce County,2015,College,275014.0
+Pierce County,2015,Bachelor,350361.0
+Pierce County,2015,Graduate,471977.0
+Spokane County,2015,Less than High School,78809.0
+Spokane County,2015,High school,104103.0
+Spokane County,2015,College,120367.0
+Spokane County,2015,Bachelor,172496.0
+Spokane County,2015,Graduate,225103.0
+Snohomish County,2015,Less than High School,151901.0
+Snohomish County,2015,High school,225135.0
+Snohomish County,2015,College,264039.0
+Snohomish County,2015,Bachelor,361569.0
+Snohomish County,2015,Graduate,457291.0
+Thurston County,2015,Less than High School,55524.0
+Thurston County,2015,High school,64664.0
+Thurston County,2015,College,76193.0
+Thurston County,2015,Bachelor,111131.0
+Thurston County,2015,Graduate,131816.0
+Yakima County,2015,Less than High School,43173.0
+Yakima County,2015,High school,56643.0
+Yakima County,2015,College,66246.0
+Yakima County,2015,Bachelor,85647.0
+Yakima County,2015,Graduate,124265.0
+Washington,2017,Less than High School,25668.0
+Washington,2017,High school,34196.0
+Washington,2017,College,39947.0
+Washington,2017,Bachelor,59662.0
+Washington,2017,Graduate,76407.0
+Whatcom County--Bellingham City,2017,Less than High School,30591.0
+Whatcom County--Bellingham City,2017,High school,31988.0
+Whatcom County--Bellingham City,2017,College,39332.0
+Whatcom County--Bellingham City,2017,Bachelor,41786.0
+Whatcom County--Bellingham City,2017,Graduate,68983.0
+"Skajit, Island & San Juan Counties",2017,Less than High School,31385.0
+"Skajit, Island & San Juan Counties",2017,High school,35817.0
+"Skajit, Island & San Juan Counties",2017,College,34145.0
+"Skajit, Island & San Juan Counties",2017,Bachelor,47257.0
+"Skajit, Island & San Juan Counties",2017,Graduate,65100.0
+Chelan & Douglas Counties,2017,Less than High School,25872.0
+Chelan & Douglas Counties,2017,High school,27807.0
+Chelan & Douglas Counties,2017,College,33322.0
+Chelan & Douglas Counties,2017,Bachelor,45795.0
+Chelan & Douglas Counties,2017,Graduate,65140.0
+"Stevens, Okanogan, Pend Oreille & Ferry Counties PUMA; Washington!!Total!!Estimate",2017,Less than High School,19366.0
+"Stevens, Okanogan, Pend Oreille & Ferry Counties PUMA; Washington!!Total!!Estimate",2017,High school,32315.0
+"Stevens, Okanogan, Pend Oreille & Ferry Counties PUMA; Washington!!Total!!Estimate",2017,College,27951.0
+"Stevens, Okanogan, Pend Oreille & Ferry Counties PUMA; Washington!!Total!!Estimate",2017,Bachelor,39012.0
+"Stevens, Okanogan, Pend Oreille & Ferry Counties PUMA; Washington!!Total!!Estimate",2017,Graduate,58487.0
+"Whitman, Asotin, Adams, Lincoln, Columbia & Garfield Counties PUMA; Washington!!Total!!Estimate",2017,Less than High School,20167.0
+"Whitman, Asotin, Adams, Lincoln, Columbia & Garfield Counties PUMA; Washington!!Total!!Estimate",2017,High school,29331.0
+"Whitman, Asotin, Adams, Lincoln, Columbia & Garfield Counties PUMA; Washington!!Total!!Estimate",2017,College,33171.0
+"Whitman, Asotin, Adams, Lincoln, Columbia & Garfield Counties PUMA; Washington!!Total!!Estimate",2017,Bachelor,43008.0
+"Whitman, Asotin, Adams, Lincoln, Columbia & Garfield Counties PUMA; Washington!!Total!!Estimate",2017,Graduate,50965.0
+Grant & Kittitas Counties,2017,Less than High School,26419.0
+Grant & Kittitas Counties,2017,High school,33552.0
+Grant & Kittitas Counties,2017,College,36443.0
+Grant & Kittitas Counties,2017,Bachelor,40951.0
+Grant & Kittitas Counties,2017,Graduate,62272.0
+"Lewis, Klickitat & Skamania Counties PUMA; Washington!!Total!!Estimate",2017,Less than High School,24874.0
+"Lewis, Klickitat & Skamania Counties PUMA; Washington!!Total!!Estimate",2017,High school,31733.0
+"Lewis, Klickitat & Skamania Counties PUMA; Washington!!Total!!Estimate",2017,College,31883.0
+"Lewis, Klickitat & Skamania Counties PUMA; Washington!!Total!!Estimate",2017,Bachelor,36682.0
+"Lewis, Klickitat & Skamania Counties PUMA; Washington!!Total!!Estimate",2017,Graduate,64205.0
+"Cowlitz, Pacific & Wahkiakum Counties PUMA; Washington!!Total!!Estimate",2017,Less than High School,29016.0
+"Cowlitz, Pacific & Wahkiakum Counties PUMA; Washington!!Total!!Estimate",2017,High school,31558.0
+"Cowlitz, Pacific & Wahkiakum Counties PUMA; Washington!!Total!!Estimate",2017,College,29202.0
+"Cowlitz, Pacific & Wahkiakum Counties PUMA; Washington!!Total!!Estimate",2017,Bachelor,42159.0
+"Cowlitz, Pacific & Wahkiakum Counties PUMA; Washington!!Total!!Estimate",2017,Graduate,63229.0
+Grays Harbor & Mason Counties,2017,Less than High School,21217.0
+Grays Harbor & Mason Counties,2017,High school,36149.0
+Grays Harbor & Mason Counties,2017,College,32998.0
+Grays Harbor & Mason Counties,2017,Bachelor,37107.0
+Grays Harbor & Mason Counties,2017,Graduate,61940.0
+Clallam & Jefferson Counties,2017,Less than High School,17476.0
+Clallam & Jefferson Counties,2017,High school,30287.0
+Clallam & Jefferson Counties,2017,College,36212.0
+Clallam & Jefferson Counties,2017,Bachelor,38057.0
+Clallam & Jefferson Counties,2017,Graduate,50371.0
+"Benton, Franklin, Kennewick, Richland & Walla Walla Counties",2017,Less than High School,69540.0
+"Benton, Franklin, Kennewick, Richland & Walla Walla Counties",2017,High school,98926.0
+"Benton, Franklin, Kennewick, Richland & Walla Walla Counties",2017,College,114107.0
+"Benton, Franklin, Kennewick, Richland & Walla Walla Counties",2017,Bachelor,174467.0
+"Benton, Franklin, Kennewick, Richland & Walla Walla Counties",2017,Graduate,215585.0
+Clark County,2017,Less than High School,123109.0
+Clark County,2017,High school,139803.0
+Clark County,2017,College,172470.0
+Clark County,2017,Bachelor,249698.0
+Clark County,2017,Graduate,279768.0
+King County,2017,Less than High School,268773.0
+King County,2017,High school,402124.0
+King County,2017,College,494074.0
+King County,2017,Bachelor,767153.0
+King County,2017,Graduate,952895.0
+Kitsap County,2017,Less than High School,71764.0
+Kitsap County,2017,High school,63983.0
+Kitsap County,2017,College,83458.0
+Kitsap County,2017,Bachelor,110423.0
+Kitsap County,2017,Graduate,151084.0
+Pierce County,2017,Less than High School,214885.0
+Pierce County,2017,High school,254665.0
+Pierce County,2017,College,297669.0
+Pierce County,2017,Bachelor,387193.0
+Pierce County,2017,Graduate,475803.0
+Spokane County,2017,Less than High School,86055.0
+Spokane County,2017,High school,127504.0
+Spokane County,2017,College,133425.0
+Spokane County,2017,Bachelor,187458.0
+Spokane County,2017,Graduate,268962.0
+Snohomish County,2017,Less than High School,198606.0
+Snohomish County,2017,High school,238518.0
+Snohomish County,2017,College,265162.0
+Snohomish County,2017,Bachelor,386569.0
+Snohomish County,2017,Graduate,448789.0
+Thurston County,2017,Less than High School,36869.0
+Thurston County,2017,High school,71287.0
+Thurston County,2017,College,79806.0
+Thurston County,2017,Bachelor,103981.0
+Thurston County,2017,Graduate,132653.0
+Yakima County,2017,Less than High School,49005.0
+Yakima County,2017,High school,57191.0
+Yakima County,2017,College,67660.0
+Yakima County,2017,Bachelor,93497.0
+Yakima County,2017,Graduate,114139.0
+Washington,2016,Less than High School,25151.0
+Washington,2016,High school,32077.0
+Washington,2016,College,37295.0
+Washington,2016,Bachelor,58262.0
+Washington,2016,Graduate,72335.0
+Whatcom County--Bellingham City,2016,Less than High School,30993.0
+Whatcom County--Bellingham City,2016,High school,35391.0
+Whatcom County--Bellingham City,2016,College,32483.0
+Whatcom County--Bellingham City,2016,Bachelor,40925.0
+Whatcom County--Bellingham City,2016,Graduate,65254.0
+"Skajit, Island & San Juan Counties",2016,Less than High School,23234.0
+"Skajit, Island & San Juan Counties",2016,High school,32342.0
+"Skajit, Island & San Juan Counties",2016,College,36466.0
+"Skajit, Island & San Juan Counties",2016,Bachelor,46030.0
+"Skajit, Island & San Juan Counties",2016,Graduate,60197.0
+Chelan & Douglas Counties,2016,Less than High School,20887.0
+Chelan & Douglas Counties,2016,High school,27306.0
+Chelan & Douglas Counties,2016,College,37142.0
+Chelan & Douglas Counties,2016,Bachelor,40218.0
+Chelan & Douglas Counties,2016,Graduate,62721.0
+"Stevens, Okanogan, Pend Oreille & Ferry Counties PUMA; Washington!!Total!!Estimate",2016,Less than High School,23607.0
+"Stevens, Okanogan, Pend Oreille & Ferry Counties PUMA; Washington!!Total!!Estimate",2016,High school,26692.0
+"Stevens, Okanogan, Pend Oreille & Ferry Counties PUMA; Washington!!Total!!Estimate",2016,College,35375.0
+"Stevens, Okanogan, Pend Oreille & Ferry Counties PUMA; Washington!!Total!!Estimate",2016,Bachelor,47450.0
+"Stevens, Okanogan, Pend Oreille & Ferry Counties PUMA; Washington!!Total!!Estimate",2016,Graduate,63171.0
+"Whitman, Asotin, Adams, Lincoln, Columbia & Garfield Counties PUMA; Washington!!Total!!Estimate",2016,Less than High School,21832.0
+"Whitman, Asotin, Adams, Lincoln, Columbia & Garfield Counties PUMA; Washington!!Total!!Estimate",2016,High school,31623.0
+"Whitman, Asotin, Adams, Lincoln, Columbia & Garfield Counties PUMA; Washington!!Total!!Estimate",2016,College,31466.0
+"Whitman, Asotin, Adams, Lincoln, Columbia & Garfield Counties PUMA; Washington!!Total!!Estimate",2016,Bachelor,38152.0
+"Whitman, Asotin, Adams, Lincoln, Columbia & Garfield Counties PUMA; Washington!!Total!!Estimate",2016,Graduate,42147.0
+Grant & Kittitas Counties,2016,Less than High School,25803.0
+Grant & Kittitas Counties,2016,High school,27298.0
+Grant & Kittitas Counties,2016,College,31594.0
+Grant & Kittitas Counties,2016,Bachelor,31761.0
+Grant & Kittitas Counties,2016,Graduate,65157.0
+"Lewis, Klickitat & Skamania Counties PUMA; Washington!!Total!!Estimate",2016,Less than High School,21732.0
+"Lewis, Klickitat & Skamania Counties PUMA; Washington!!Total!!Estimate",2016,High school,30809.0
+"Lewis, Klickitat & Skamania Counties PUMA; Washington!!Total!!Estimate",2016,College,31472.0
+"Lewis, Klickitat & Skamania Counties PUMA; Washington!!Total!!Estimate",2016,Bachelor,34919.0
+"Lewis, Klickitat & Skamania Counties PUMA; Washington!!Total!!Estimate",2016,Graduate,55744.0
+"Cowlitz, Pacific & Wahkiakum Counties PUMA; Washington!!Total!!Estimate",2016,Less than High School,22301.0
+"Cowlitz, Pacific & Wahkiakum Counties PUMA; Washington!!Total!!Estimate",2016,High school,33129.0
+"Cowlitz, Pacific & Wahkiakum Counties PUMA; Washington!!Total!!Estimate",2016,College,30593.0
+"Cowlitz, Pacific & Wahkiakum Counties PUMA; Washington!!Total!!Estimate",2016,Bachelor,47999.0
+"Cowlitz, Pacific & Wahkiakum Counties PUMA; Washington!!Total!!Estimate",2016,Graduate,64299.0
+Grays Harbor & Mason Counties,2016,Less than High School,12469.0
+Grays Harbor & Mason Counties,2016,High school,26925.0
+Grays Harbor & Mason Counties,2016,College,28419.0
+Grays Harbor & Mason Counties,2016,Bachelor,47148.0
+Grays Harbor & Mason Counties,2016,Graduate,49881.0
+Clallam & Jefferson Counties,2016,Less than High School,18210.0
+Clallam & Jefferson Counties,2016,High school,31232.0
+Clallam & Jefferson Counties,2016,College,31810.0
+Clallam & Jefferson Counties,2016,Bachelor,38591.0
+Clallam & Jefferson Counties,2016,Graduate,45548.0
+"Benton, Franklin, Kennewick, Richland & Walla Walla Counties",2016,Less than High School,67139.0
+"Benton, Franklin, Kennewick, Richland & Walla Walla Counties",2016,High school,90827.0
+"Benton, Franklin, Kennewick, Richland & Walla Walla Counties",2016,College,109303.0
+"Benton, Franklin, Kennewick, Richland & Walla Walla Counties",2016,Bachelor,180505.0
+"Benton, Franklin, Kennewick, Richland & Walla Walla Counties",2016,Graduate,202856.0
+Clark County,2016,Less than High School,129604.0
+Clark County,2016,High school,135533.0
+Clark County,2016,College,151592.0
+Clark County,2016,Bachelor,228627.0
+Clark County,2016,Graduate,270683.0
+King County,2016,Less than High School,281787.0
+King County,2016,High school,397959.0
+King County,2016,College,479449.0
+King County,2016,Bachelor,757965.0
+King County,2016,Graduate,911296.0
+Kitsap County,2016,Less than High School,49720.0
+Kitsap County,2016,High school,68501.0
+Kitsap County,2016,College,78452.0
+Kitsap County,2016,Bachelor,107987.0
+Kitsap County,2016,Graduate,137940.0
+Pierce County,2016,Less than High School,185613.0
+Pierce County,2016,High school,244930.0
+Pierce County,2016,College,281747.0
+Pierce County,2016,Bachelor,375562.0
+Pierce County,2016,Graduate,495275.0
+Spokane County,2016,Less than High School,107429.0
+Spokane County,2016,High school,117706.0
+Spokane County,2016,College,126950.0
+Spokane County,2016,Bachelor,186223.0
+Spokane County,2016,Graduate,230284.0
+Snohomish County,2016,Less than High School,181875.0
+Snohomish County,2016,High school,221331.0
+Snohomish County,2016,College,265043.0
+Snohomish County,2016,Bachelor,376912.0
+Snohomish County,2016,Graduate,465404.0
+Thurston County,2016,Less than High School,55940.0
+Thurston County,2016,High school,59015.0
+Thurston County,2016,College,76996.0
+Thurston County,2016,Bachelor,110568.0
+Thurston County,2016,Graduate,126501.0
+Yakima County,2016,Less than High School,44857.0
+Yakima County,2016,High school,60802.0
+Yakima County,2016,College,64474.0
+Yakima County,2016,Bachelor,90331.0
+Yakima County,2016,Graduate,127628.0
