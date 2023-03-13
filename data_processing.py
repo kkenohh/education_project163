@@ -255,6 +255,10 @@ def merge_income_data(files) -> pd.DataFrame:
     income_df.to_csv('median_income.csv', index=False)
 
 
+def get_income_data() -> pd.DataFrame:
+    return pd.read_csv('./data/median_income.csv')
+
+
 def main():
     # create income files
     '''
@@ -270,4 +274,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
