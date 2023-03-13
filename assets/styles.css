@@ -52,11 +52,13 @@ body {
 }
 
 a {
-    color: #fc9566;
+    color: #ff7a3c;
+    text-decoration: none;
 }
 
 a:visited {
-    color: #fc9566;
+    color: #ff7a3c;
+    text-decoration: none;
 }
 
 .graph-header {
@@ -70,4 +72,8 @@ a:visited {
 
 .markdown {
     max-width: 800px;
+    background-color: #fff;
+    border: none;
+    border-radius: 30px;
+    padding: 10px 30px;
 }

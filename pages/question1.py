@@ -43,11 +43,14 @@ layout = html.Div(children=[
         # What did we find?
 
         The thing that stood out the most after looking at the graphs is the
-        most prominent degree among all races is less than high school. One thing to note is that while
-        white has a really high number of people who have less than high school, the proportion of those
-        people vs those who have a high school diploma are similar to the other races. The most concerning
-        thing about the graphs is that Hispanic/Latino have a the biggest disparity between "less than
-        high school" and any degree higher than that, averaging a gap of around 700k people.
+        most prominent degree among all races is less than high school.
+        One thing to note is that while white has a really high number of
+        people who have less than high school, the proportion of those
+        people vs those who have a high school diploma are similar to the
+        other races. The most concerning thing we noticed is that
+        Hispanic/Latino have the biggest disparity between "less than
+        high school" and any degree higher than that, averaging a gap of
+        around 700k people. We decided to take a closer look at this
         ''', className='markdown')
     ], className='question-one')
 ], className='whole-page')
