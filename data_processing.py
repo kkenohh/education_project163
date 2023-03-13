@@ -418,6 +418,7 @@ def clean_smoking_data() -> pd.DataFrame:
     smoking_data = data.drop(columns=['Lower CI', 'Upper CI'])
     # "**"" = data supression, "--"" = no data, "NR" = not reliable
     NR_smoking_data = smoking_data[smoking_data['Percentage'].str.contains("NR") == False]
+    NR_smoking_data = NR_smoking_data.rename(columns={'Count': 'Smoking Count', 'Percentage': 'Percentage Smoking'})
     """
     contains_data = NR_smoking_data[NR_smoking_data['Percentage'].str.contains("--") == False]
     clean_smoking_data = contains_data[contains_data['Percentage'].str.contains("**") == False]
@@ -431,6 +432,7 @@ def clean_mental_health_data() -> pd.DataFrame:
     mental_health_data = data.drop(columns=['Lower CI', 'Upper CI'])
     # "**"" = data supression, "--"" = no data, "NR" = not reliable
     NR_mental_health_data = mental_health_data[mental_health_data['Percentage'].str.contains("NR") == False]
+    NR_mental_health_data = NR_mental_health_data.rename(columns={'Count': 'Poor Mental Health Count', 'Percentage': 'Percentage Poor Mental Health'})
     """
     contains_data = NR_smoking_data[NR_smoking_data['Percentage'].str.contains("--") == False]
     clean_smoking_data = contains_data[contains_data['Percentage'].str.contains("**") == False]
@@ -444,6 +446,7 @@ def clean_diabetes_data() -> pd.DataFrame:
     diabetes_data = data.drop(columns=['Lower CI', 'Upper CI'])
     # "**"" = data supression, "--"" = no data, "NR" = not reliable
     NR_diabetes_data = diabetes_data[diabetes_data['Percentage'].str.contains("NR") == False]
+    NR_diabetes_data = NR_diabetes_data.rename(columns={'Count': 'Diabetes Count', 'Percentage': 'Percentage Diabetes'})
     """
     contains_data = NR_smoking_data[NR_smoking_data['Percentage'].str.contains("--") == False]
     clean_smoking_data = contains_data[contains_data['Percentage'].str.contains("**") == False]
@@ -457,6 +460,7 @@ def clean_binge_drinking_data() -> pd.DataFrame:
     binge_drinking_data = data.drop(columns=['Lower CI', 'Upper CI'])
     # "**"" = data supression, "--"" = no data, "NR" = not reliable
     NR_binge_drinking_data = binge_drinking_data[binge_drinking_data['Percentage'].str.contains("NR") == False]
+    NR_binge_drinking_data = NR_binge_drinking_data.rename(columns={'Count': 'Binge Drinking Count', 'Percentage': 'Binge Drinking Percentage'})
     """
     contains_data = NR_smoking_data[NR_smoking_data['Percentage'].str.contains("--") == False]
     clean_smoking_data = contains_data[contains_data['Percentage'].str.contains("**") == False]
@@ -464,56 +468,34 @@ def clean_binge_drinking_data() -> pd.DataFrame:
     return NR_binge_drinking_data
 
 
-# cleaning smoking.csv
-def clean_smoking_data() -> pd.DataFrame:
-    data = pd.read_csv('data/smoking.csv')
-    smoking_data = data.drop(columns=['Lower CI', 'Upper CI'])
-    # "**"" = data supression, "--"" = no data, "NR" = not reliable
-    NR_smoking_data = smoking_data[smoking_data['Percentage'].str.contains("NR") == False]
-    """
-    contains_data = NR_smoking_data[NR_smoking_data['Percentage'].str.contains("--") == False]
-    clean_smoking_data = contains_data[contains_data['Percentage'].str.contains("**") == False]
-    """
-    return NR_smoking_data
+# merging smoking and binge drinking
+def merge_smoking_drinking() -> pd.DataFrame:
+    smoking = clean_smoking_data()
+    drinking = clean_binge_drinking_data()
+    merged_smoking_drinking = pd.merge(smoking, drinking, on=['County'])
+    merged_smoking_drinking['Average Population'] = (merged_smoking_drinking['Population_x'] + merged_smoking_drinking['Population_y']) / 2
+    merged_smoking_drinking = merged_smoking_drinking.drop(columns=['Population_x', 'Population_y'])
+    return merged_smoking_drinking
 
 
-# cleaning poor_mental_health.csv
-def clean_mental_health_data() -> pd.DataFrame:
-    data = pd.read_csv('data/poor_mental_health.csv')
-    mental_health_data = data.drop(columns=['Lower CI', 'Upper CI'])
-    # "**"" = data supression, "--"" = no data, "NR" = not reliable
-    NR_mental_health_data = mental_health_data[mental_health_data['Percentage'].str.contains("NR") == False]
-    """
-    contains_data = NR_smoking_data[NR_smoking_data['Percentage'].str.contains("--") == False]
-    clean_smoking_data = contains_data[contains_data['Percentage'].str.contains("**") == False]
-    """
-    return NR_mental_health_data
+# merging mental health and diabetes
+def merge_mental_diabetes() -> pd.DataFrame:
+    mental_health = clean_mental_health_data()
+    diabetes = clean_diabetes_data()
+    merged_mental_diabetes = pd.merge(mental_health, diabetes, on=['County'])
+    merged_mental_diabetes['Average Population'] = (merged_mental_diabetes['Population_x'] + merged_mental_diabetes['Population_y']) / 2
+    merged_mental_diabetes = merged_mental_diabetes.drop(columns=['Population_x', 'Population_y'])
+    return merged_mental_diabetes
 
 
-# cleaning diabetes.csv
-def clean_diabetes_data() -> pd.DataFrame:
-    data = pd.read_csv('data/diabetes.csv')
-    diabetes_data = data.drop(columns=['Lower CI', 'Upper CI'])
-    # "**"" = data supression, "--"" = no data, "NR" = not reliable
-    NR_diabetes_data = diabetes_data[diabetes_data['Percentage'].str.contains("NR") == False]
-    """
-    contains_data = NR_smoking_data[NR_smoking_data['Percentage'].str.contains("--") == False]
-    clean_smoking_data = contains_data[contains_data['Percentage'].str.contains("**") == False]
-    """
-    return NR_diabetes_data
-
-
-# cleaning binge_drinking.csv
-def clean_binge_drinking_data() -> pd.DataFrame:
-    data = pd.read_csv('data/binge_drinking.csv')
-    binge_drinking_data = data.drop(columns=['Lower CI', 'Upper CI'])
-    # "**"" = data supression, "--"" = no data, "NR" = not reliable
-    NR_binge_drinking_data = binge_drinking_data[binge_drinking_data['Percentage'].str.contains("NR") == False]
-    """
-    contains_data = NR_smoking_data[NR_smoking_data['Percentage'].str.contains("--") == False]
-    clean_smoking_data = contains_data[contains_data['Percentage'].str.contains("**") == False]
-    """
-    return NR_binge_drinking_data
+# merging merged sets
+def merge_all() -> pd.DataFrame:
+    smoking_drinking = merge_smoking_drinking()
+    mental_diabetes = merge_mental_diabetes()
+    merged = pd.merge(smoking_drinking, mental_diabetes, on=['County'])
+    merged['Average Population'] = (merged['Average Population_x'] + merged['Average Population_y']) / 2
+    merged = merged.drop(columns=['Average Population_x', 'Average Population_y'])
+    return merged
 
 
 def main():
@@ -526,15 +508,15 @@ def main():
 
     '''
     merge_income_data('/data/income')
-    print('Smoking clean sample:')
-    print(clean_smoking_data().head())
-    print('Mental Health clean sample:')
-    print(clean_mental_health_data().head())
-    print('Diabetes clean sample:')
-    print(clean_diabetes_data().head())
-    print('Binge Drinking clean sample:')
-    print(clean_binge_drinking_data().head())
     '''
+ 
+    print('Merged Smoking Drinking:')
+    print(merge_smoking_drinking().columns)
+    print('Merged Mental Diabetes:')
+    print(merge_mental_diabetes().columns)
+    print('Merged health sets:')
+    print(merge_all().columns)
+
     # create employment files
     clean_employment_data('data/employment_2013.csv')
     clean_employment_data('data/employment_2014.csv')
