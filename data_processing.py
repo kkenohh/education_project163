@@ -259,14 +259,52 @@ def get_income_data() -> pd.DataFrame:
 def clean_smoking_data() -> pd.DataFrame:
     data = pd.read_csv('data/smoking.csv')
     smoking_data = data.drop(columns=['Lower CI', 'Upper CI'])
-    return smoking_data
+    # "**"" = data supression, "--"" = no data, "NR" = not reliable
+    NR_smoking_data = smoking_data[smoking_data['Percentage'].str.contains("NR") == False]
+    """
+    contains_data = NR_smoking_data[NR_smoking_data['Percentage'].str.contains("--") == False]
+    clean_smoking_data = contains_data[contains_data['Percentage'].str.contains("**") == False]
+    """
+    return NR_smoking_data
 
 
 # cleaning poor_mental_health.csv
 def clean_mental_health_data() -> pd.DataFrame:
     data = pd.read_csv('data/poor_mental_health.csv')
     mental_health_data = data.drop(columns=['Lower CI', 'Upper CI'])
-    return mental_health_data
+    # "**"" = data supression, "--"" = no data, "NR" = not reliable
+    NR_mental_health_data = mental_health_data[mental_health_data['Percentage'].str.contains("NR") == False]
+    """
+    contains_data = NR_smoking_data[NR_smoking_data['Percentage'].str.contains("--") == False]
+    clean_smoking_data = contains_data[contains_data['Percentage'].str.contains("**") == False]
+    """
+    return NR_mental_health_data
+
+
+# cleaning diabetes.csv
+def clean_diabetes_data() -> pd.DataFrame:
+    data = pd.read_csv('data/diabetes.csv')
+    diabetes_data = data.drop(columns=['Lower CI', 'Upper CI'])
+    # "**"" = data supression, "--"" = no data, "NR" = not reliable
+    NR_diabetes_data = diabetes_data[diabetes_data['Percentage'].str.contains("NR") == False]
+    """
+    contains_data = NR_smoking_data[NR_smoking_data['Percentage'].str.contains("--") == False]
+    clean_smoking_data = contains_data[contains_data['Percentage'].str.contains("**") == False]
+    """
+    return NR_diabetes_data
+
+
+# cleaning binge_drinking.csv
+def clean_binge_drinking_data() -> pd.DataFrame:
+    data = pd.read_csv('data/binge_drinking.csv')
+    binge_drinking_data = data.drop(columns=['Lower CI', 'Upper CI'])
+    # "**"" = data supression, "--"" = no data, "NR" = not reliable
+    NR_binge_drinking_data = binge_drinking_data[binge_drinking_data['Percentage'].str.contains("NR") == False]
+    """
+    contains_data = NR_smoking_data[NR_smoking_data['Percentage'].str.contains("--") == False]
+    clean_smoking_data = contains_data[contains_data['Percentage'].str.contains("**") == False]
+    """
+    return NR_binge_drinking_data
 
 
 def main():
@@ -279,8 +317,17 @@ def main():
     create_income_dataset('data/median_income_2017.csv')
     '''
 
+    '''
     merge_income_data('/data/income')
-    print(clean_smoking_data().columns)
+    print('Smoking clean sample:')
+    print(clean_smoking_data().head())
+    print('Mental Health clean sample:')
+    print(clean_mental_health_data().head())
+    print('Diabetes clean sample:')
+    print(clean_diabetes_data().head())
+    print('Binge Drinking clean sample:')
+    print(clean_binge_drinking_data().head())
+    '''
 
 
 if __name__ == '__main__':
