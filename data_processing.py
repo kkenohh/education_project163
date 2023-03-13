@@ -222,7 +222,7 @@ def create_income_dataset(filename):
     # add a year column
     result['Year'] = name
 
-    new_file = 'data/income_' + name + '.csv'
+    new_file = 'data/income/income_' + name + '.csv'
     result.to_csv(new_file, index=False)
 
 
@@ -248,20 +248,22 @@ def merge_income_data(files) -> pd.DataFrame:
     income_df.columns = ['Region', 'Year', 'Educational Attainment',
                          'Median Income']
 
-    income_df.to_csv('data/median_income.csv', index=False)
+    income_df.to_csv('data/income/median_income.csv', index=False)
 
 
 def get_income_data() -> pd.DataFrame:
     return pd.read_csv('./data/median_income.csv')
 
+
 def clean_employment_data(file):
     data = pd.read_csv(file)
 
-    if len(data.index) == 37:
-        data = data.drop([35, 36])
-
     # drop unneeded rows
-    data = data.drop(range(0, 31))
+    if len(data.index) == 41:
+        data = data.drop(range(0, 37))
+    else:
+        data = data.drop(range(0, 31))
+        data = data.drop([35, 36])
 
     # update the dataframe with float values for columns with percentage
     change_cols = data.filter(regex=r'([a-zA-z]+|\W+)ploy').columns
@@ -335,14 +337,14 @@ def clean_employment_data(file):
     new_df = new_df.drop(new_df.columns[2], axis=1)
     new_df = new_df.rename(columns={'Total': 'Total in labor force'})
 
-    name = file.split('.')[0].split('_')[1]
+    name = file.split('.')[0].split('/')[1].split('_')[1]
 
     # add a year column
     new_df['Year'] = name
 
     new_file = 'data/employment/employment_status_' + name + '.csv'
     new_df.to_csv(new_file, index=False)
-    print('Successfully write to CSV file')
+    print('Successfully written to CSV file')
 
 
 def sum_puma(region, status, new_df, old_df):
@@ -360,7 +362,7 @@ def rename_cols(col, df):
     regions = list(regions)
 
     new_cols = [r + ' ' + col for r in regions]
-    df = df.rename(columns={old_col:new_col for old_col, new_col in zip(list(old_cols.columns), new_cols)})
+    df = df.rename(columns={old_col: new_col for old_col, new_col in zip(list(old_cols.columns), new_cols)})
     return df
 
 
@@ -371,7 +373,7 @@ def main():
     create_income_dataset('data/median_income_2015.csv')
     create_income_dataset('data/median_income_2016.csv')
     create_income_dataset('data/median_income_2017.csv')
-    merge_income_data('data/income')
+    # merge_income_data('data/income')
 
     clean_employment_data('data/employment_2013.csv')
     clean_employment_data('data/employment_2014.csv')
