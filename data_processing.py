@@ -40,25 +40,21 @@ def create_income_dataset(filename):
         'Chelan & Douglas Counties',
         'Clallam & Jefferson Counties PUMA, Washington!!Total!!Estimate':
         'Clallam & Jefferson Counties',
-        'Cowlitz, Pacific & Wahkiakum Counties PUMA; \
-          Washington!!Total!!Estimate':
+        'Cowlitz, Pacific & Wahkiakum Counties PUMA; Washington!!Total!!Estimate':
         'Cowlitz, Pacific & Wahkiakum Counties',
         'Grant & Kittitas Counties PUMA, Washington!!Total!!Estimate':
         'Grant & Kittitas Counties',
         'Grays Harbor & Mason Counties PUMA, Washington!!Total!!Estimate':
         'Grays Harbor & Mason Counties',
-        'Lewis, Klickitat & Skamania Counties PUMA; \
-          Washington!!Total!!Estimate':
+        'Lewis, Klickitat & Skamania Counties PUMA; Washington!!Total!!Estimate':
         'Lewis, Klickitat & Skamania Counties',
         'Skagit, Island & San Juan Counties PUMA; Washington!!Total!!Estimate':
         'Skajit, Island & San Juan Counties',
-        'Stevens, Okanogan, Pend Oreille & Ferry Counties PUMA; \
-          Washington!!Total!!Estimate':
+        'Stevens, Okanogan, Pend Oreille & Ferry Counties PUMA; Washington!!Total!!Estimate':
         'Stevens, Okanogan, Pend Oreille & Ferry Counties',
         'Whatcom County--Bellingham City PUMA, Washington!!Total!!Estimate':
         'Whatcom County--Bellingham City',
-        'Whitman, Asotin, Adams, Lincoln, Columbia & Garfield Counties PUMA; \
-          Washington!!Total!!Estimate':
+        'Whitman, Asotin, Adams, Lincoln, Columbia & Garfield Counties PUMA; Washington!!Total!!Estimate':
         'Whitman, Asotin, Adams, Lincoln, Columbia & Garfield Counties',
         'Label (Grouping)': 'Label',
         'Washington!!Total!!Estimate': 'Washington'
@@ -226,7 +222,7 @@ def create_income_dataset(filename):
     # add a year column
     result['Year'] = name
 
-    new_file = 'income_' + name + '.csv'
+    new_file = 'data/income_' + name + '.csv'
     result.to_csv(new_file, index=False)
 
 
@@ -252,7 +248,7 @@ def merge_income_data(files) -> pd.DataFrame:
     income_df.columns = ['Region', 'Year', 'Educational Attainment',
                          'Median Income']
 
-    income_df.to_csv('median_income.csv', index=False)
+    income_df.to_csv('data/median_income.csv', index=False)
 
 
 def get_income_data() -> pd.DataFrame:
