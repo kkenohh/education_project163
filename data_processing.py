@@ -254,18 +254,131 @@ def merge_income_data(files) -> pd.DataFrame:
 def get_income_data() -> pd.DataFrame:
     return pd.read_csv('./data/median_income.csv')
 
+def clean_employment_data(file):
+    data = pd.read_csv(file)
+
+    if len(data.index) == 37:
+        data = data.drop([35, 36])
+
+    # drop unneeded rows
+    data = data.drop(range(0, 31))
+
+    # update the dataframe with float values for columns with percentage
+    change_cols = data.filter(regex=r'([a-zA-z]+|\W+)ploy').columns
+    data[change_cols] = data[change_cols].apply(lambda num: num.str.rstrip('%').astype('float') / 100.0)
+
+    # update the dataframe with float values for columns with string numbers
+    num_cols = data.filter(regex=r'([a-zA-z]+|\W+)Total').columns
+    data[num_cols] = data[num_cols].apply(lambda num: num.str.replace(',', '').astype(float))
+
+    # rename columns
+    data = rename_cols('Total', data)
+    data = rename_cols('Employ', data)
+    data = rename_cols('Unemploy', data)
+
+    # calculate the actual number of people who is employed / unemployed
+    for i in range(1, len(data.columns) - 1, 3):
+        pop = data.columns[i]
+        employed = data.columns[i+1]
+        unemployed = data.columns[i+2]
+
+        data[employed] = round(data[pop].astype(float) * data[employed])
+        data[unemployed] = round(data[pop].astype(float) * data[unemployed])
+
+    # rename cols for each PUMA regions
+    # benton
+    benton = data[data.filter(like='Benton').columns]
+    benton_total = benton[benton.filter(like='Total').columns].copy()
+    benton_total['Benton, Franklin, Kennewick, Richland & Walla Walla Counties Total'] = benton_total.sum(axis=1)
+
+    benton = data[data.filter(like='Benton').columns]
+    benton_employ = benton[benton.filter(like='Employ').columns].copy()
+    benton_employ['Benton, Franklin, Kennewick, Richland & Walla Walla Counties Employ'] = benton_employ.sum(axis=1)
+
+    benton = data[data.filter(like='Benton').columns]
+    benton_unemploy = benton[benton.filter(like='Unemploy').columns].copy()
+    benton_unemploy['Benton, Franklin, Kennewick, Richland & Walla Walla Counties Unemploy'] = benton_unemploy.sum(axis=1)
+
+    # create a new df
+    employment_status = pd.DataFrame()
+    employment_status['Attainment'] = data['Label (Grouping)']
+    status = ['Total', 'Employ', 'Unemploy']
+
+    employment_status['Benton, Franklin, Kennewick, Richland & Walla Walla Counties Total'] = benton_total['Benton, Franklin, Kennewick, Richland & Walla Walla Counties Total']
+    employment_status['Benton, Franklin, Kennewick, Richland & Walla Walla Counties Employ'] = benton_employ['Benton, Franklin, Kennewick, Richland & Walla Walla Counties Employ']
+    employment_status['Benton, Franklin, Kennewick, Richland & Walla Walla Counties Unemploy'] = benton_unemploy['Benton, Franklin, Kennewick, Richland & Walla Walla Counties Unemploy']
+
+    sum_puma('Clark', status, employment_status, data)
+    sum_puma('Kitsap', status, employment_status, data)
+    sum_puma('King', status, employment_status, data)
+    sum_puma('Pierce', status, employment_status, data)
+    sum_puma('Spokane', status, employment_status, data)
+    sum_puma('Snohomish', status, employment_status, data)
+    sum_puma('Thurston', status, employment_status, data)
+    sum_puma('Yakima', status, employment_status, data)
+
+    # add other cols
+    other_puma = data[data.filter(regex='Label|Chelan|Clallam|Cowlitz|Grant|Grays|Klickitat|Skagit|Okanogan|Whatcom|Whitman').columns]
+    employment_status = pd.merge(employment_status, other_puma, left_on='Attainment', right_on='Label (Grouping)')
+
+    # reformat df
+    stacked = employment_status.set_index('Attainment')
+    new_format = stacked.stack(level=0)
+    new_format = new_format.to_frame()
+    new_format = new_format.reset_index()
+    new_format.columns = ['Attainment', 'Regions', 'Count']
+    new_format['Status'] = new_format['Regions'].apply(lambda x: x.split(' ')[-1])
+    new_format['Regions'] = new_format['Regions'].apply(lambda x: x.rsplit(' ', 1)[0])
+
+    new_df = new_format.pivot(index=['Attainment', 'Regions'], columns='Status', values='Count')
+    new_df = new_df.reset_index()
+    new_df = new_df.drop(new_df.columns[2], axis=1)
+    new_df = new_df.rename(columns={'Total': 'Total in labor force'})
+
+    name = file.split('.')[0].split('_')[1]
+
+    # add a year column
+    new_df['Year'] = name
+
+    new_file = 'data/employment/employment_status_' + name + '.csv'
+    new_df.to_csv(new_file, index=False)
+    print('Successfully write to CSV file')
+
+
+def sum_puma(region, status, new_df, old_df):
+    puma = old_df[old_df.filter(like=region).columns]
+    for word in status:
+        puma_status = puma[puma.filter(like=word).columns].copy()
+        puma_status[region + ' County ' + word] = puma_status.sum(axis=1)
+
+        new_df[region + ' County ' + word] = puma_status[region + ' County ' + word]
+
+
+def rename_cols(col, df):
+    old_cols = df.filter(like=col)
+    regions = old_cols.columns.str.extract(r'^(.*?(?= PUMA))', expand=False)
+    regions = list(regions)
+
+    new_cols = [r + ' ' + col for r in regions]
+    df = df.rename(columns={old_col:new_col for old_col, new_col in zip(list(old_cols.columns), new_cols)})
+    return df
+
 
 def main():
     # create income files
-    '''
     create_income_dataset('data/median_income_2013.csv')
     create_income_dataset('data/median_income_2014.csv')
     create_income_dataset('data/median_income_2015.csv')
     create_income_dataset('data/median_income_2016.csv')
     create_income_dataset('data/median_income_2017.csv')
-    '''
+    merge_income_data('data/income')
 
-    merge_income_data('/data/income')
+    clean_employment_data('data/employment_2013.csv')
+    clean_employment_data('data/employment_2014.csv')
+    clean_employment_data('data/employment_2015.csv')
+    clean_employment_data('data/employment_2016.csv')
+    clean_employment_data('data/employment_2017.csv')
+
 
 
 if __name__ == '__main__':
