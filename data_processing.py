@@ -333,6 +333,11 @@ def clean_employment_data(file):
     new_df = new_df.drop(new_df.columns[2], axis=1)
     new_df = new_df.rename(columns={'Total': 'Total in labor force'})
 
+    # clean attainment columns values
+    pattern = r'.*\xa0(.*)'
+    replacement = r'\1'
+    new_df['Attainment'] = new_df['Attainment'].str.replace(pattern, replacement, regex=True)
+
     name = file.split('.')[0].split('/')[1].split('_')[1]
 
     # add a year column
@@ -364,23 +369,22 @@ def rename_cols(col, df):
 
 def main():
     # create income files
-    '''
     create_income_dataset('data/median_income_2013.csv')
     create_income_dataset('data/median_income_2014.csv')
     create_income_dataset('data/median_income_2015.csv')
     create_income_dataset('data/median_income_2016.csv')
     create_income_dataset('data/median_income_2017.csv')
-    '''
-    concat_files('data/income_og', 'income')
-    concat_files('data/employment_og', 'employment')
 
-    '''
+    # create employment files
     clean_employment_data('data/employment_2013.csv')
     clean_employment_data('data/employment_2014.csv')
     clean_employment_data('data/employment_2015.csv')
     clean_employment_data('data/employment_2016.csv')
     clean_employment_data('data/employment_2017.csv')
-    '''
+
+    concat_files('data/income_og', 'income')
+    concat_files('data/employment_og', 'employment')
+
 
 
 if __name__ == '__main__':
