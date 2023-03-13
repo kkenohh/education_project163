@@ -14,19 +14,10 @@ EDU_DF = dp.clean_edu_data()
 INCOME_DF = dp.get_income_data()
 
 # Helpful Global Variables
-EDU_RACES = np.insert(EDU_DF["Race"].sort_values().unique(), 0, 'Select All')
-EDU_DEGREES = np.insert(EDU_DF['Attainment Label'].sort_values().unique(),
-                        0, 'Select All')
 REGIONS = np.delete(INCOME_DF["Region"].sort_values().unique(), 16)
 
 
 # Create Dropdown menus
-race_dropdown = dcc.Dropdown(options=EDU_RACES, value=[],
-                             placeholder='Select a Race',
-                             className='dropdown', multi=True)
-degree_dropdown = dcc.Dropdown(options=EDU_DEGREES, value=[],
-                               placeholder='Select a Degree',
-                               className='dropdown', multi=True)
 region_dropdown = dcc.Dropdown(options=REGIONS, value=[],
                                placeholder='Select a Region',
                                className='dropdown-two', multi=True)
