@@ -366,9 +366,49 @@ def rename_cols(col, df):
     df = df.rename(columns={old_col: new_col for old_col, new_col in zip(list(old_cols.columns), new_cols)})
     return df
 
+def merge_data() -> pd.DataFrame:
+    edu = clean_edu_data()
+    employment = pd.read_csv('./data/employment/employment_status.csv')
+
+    edu['Attainment Label'] = edu['Attainment Label'].replace(
+        ['Some college, no degree', 'Associate degree'],
+        'Some college or associate\'s degree')
+    edu['Attainment Label'] = edu['Attainment Label'].replace(
+        ['Bachelor\'s degree', 'Master\'s degree',
+         'Professional or Doctorate degree'],
+        'Bachelor\'s degree or higher')
+    edu_data = edu[['Attainment Label', 'Puma Label', 'year',
+                       'Estimate Population']]
+    edu_data = edu_data.rename(columns={'Attainment Label': 'Attainment',
+                                        'Puma Label': 'Regions',
+                                        'year': 'Year'})
+
+    employment['Attainment'] = employment['Attainment'].replace(
+        'Less than high school graduate', 'Less than high school')
+    employment['Attainment'] = employment['Attainment'].replace(
+        'High school graduate (includes equivalency)',
+        'High school or equivalent')
+    employment['Attainment'] = employment['Attainment'].replace(
+        'Less than high school graduate', 'Less than high school')
+
+    edu_data = edu_data.groupby(['Attainment', 'Regions', 'Year']).sum()
+
+    employ_data = employment.groupby(['Attainment', 'Regions',
+                                         'Year']).sum()
+
+    joined_data = pd.merge(edu_data, employ_data,
+                           on=['Attainment', 'Regions', 'Year'])
+    joined_data = joined_data.reset_index()
+    joined_data['Unemployed Rate'] = \
+        (joined_data['Unemploy'] / joined_data['Total in labor force']) * 100
+
+    # write to CSV
+    new_file = 'data/employment/joined_employment_status.csv'
+    joined_data.to_csv(new_file, index=False)
+
 
 def get_employment_data() -> pd.DataFrame:
-    return pd.read_csv('./data/employment/employment_status.csv')
+    return pd.read_csv('data/employment/joined_employment_status.csv')
 
 
 def main():
@@ -388,7 +428,7 @@ def main():
 
     concat_files('data/income_og', 'income')
     concat_files('data/employment_og', 'employment')
-
+    merge_data()
 
 
 if __name__ == '__main__':
