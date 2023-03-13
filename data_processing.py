@@ -255,6 +255,20 @@ def get_income_data() -> pd.DataFrame:
     return pd.read_csv('./data/median_income.csv')
 
 
+# cleaning smoking.csv
+def clean_smoking_data() -> pd.DataFrame:
+    data = pd.read_csv('data/smoking.csv')
+    smoking_data = data.drop(columns=['Lower CI', 'Upper CI'])
+    return smoking_data
+
+
+# cleaning poor_mental_health.csv
+def clean_mental_health_data() -> pd.DataFrame:
+    data = pd.read_csv('data/poor_mental_health.csv')
+    mental_health_data = data.drop(columns=['Lower CI', 'Upper CI'])
+    return mental_health_data
+
+
 def main():
     # create income files
     '''
@@ -266,6 +280,7 @@ def main():
     '''
 
     merge_income_data('/data/income')
+    print(clean_smoking_data().columns)
 
 
 if __name__ == '__main__':
