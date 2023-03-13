@@ -23,8 +23,13 @@ body {
 }
 
 .dropdown {
-    width: 700px;
+    width: 350px;
     margin: 10px 0;
+}
+
+.dropdowns {
+    display: flex;
+    gap: 15px;
 }
 
 .navbar {

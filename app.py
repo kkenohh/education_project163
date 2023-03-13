@@ -5,6 +5,7 @@ import dash
 import pandas as pd
 import data_processing as dp
 import plotly.express as px
+import numpy as np
 pd.options.plotting.backend = "plotly"
 
 
@@ -20,8 +21,6 @@ app.layout = html.Div(children=[
     ], className='navbar'),
     dash.page_container
 ], className='whole-page')
-
-# dcc.Markdown('./README.md')
 
 
 if __name__ == '__main__':
