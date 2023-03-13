@@ -45,7 +45,7 @@ layout = html.Div(children=[
 
         [Add analysis].
         ''', className='markdown')
-    ], className='question-one')
+    ], className='question')
 ], className='whole-page')
 
 

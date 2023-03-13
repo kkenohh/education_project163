@@ -74,7 +74,7 @@ layout = html.Div(children=[
         their family, which takes away necessary time for studying and
         doing well in school.
         ''', className='markdown')
-    ], className='question-one')
+    ], className='question')
 ], className='whole-page')
 
 

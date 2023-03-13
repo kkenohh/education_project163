@@ -48,7 +48,7 @@ layout = html.Div(children=[
         of a region, and the number of people who attained "less than high
         school".
         ''', className='markdown')
-    ], className='question-one')
+    ], className='question')
 ], className='whole-page')
 
 
