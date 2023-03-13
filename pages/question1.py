@@ -38,7 +38,7 @@ layout = html.Div(children=[
                 degree_dropdown
             ], className='dropdowns'),
             dcc.Graph(id='attainment')
-        ]),
+        ], className='graphs'),
         dcc.Markdown('''
         # What did we find?
 
