@@ -16,7 +16,8 @@ EMPLOYMENT_DF = dp.get_employment_data()
 # Helpful Global Variables
 EDU_DEGREES = np.insert(
     EMPLOYMENT_DF['Attainment'].sort_values().unique(), 0, 'Select All')
-REGIONS = np.delete(EMPLOYMENT_DF["Regions"].sort_values().unique(), 16)
+REGIONS = np.insert(EMPLOYMENT_DF["Regions"].sort_values().unique(), 0,
+                    'Select All')
 
 
 # Create Dropdown menus
@@ -57,18 +58,22 @@ def employment_status_by_attainment(region):
     unemployed_rate = EMPLOYMENT_DF[['Regions', 'Attainment', 'Year',
                                      'Unemployed Rate']]
 
-    region_mask = unemployed_rate['Regions'].isin(list(region))
-    unemployed_rate = unemployed_rate[region_mask]
-    unemployed_rate = unemployed_rate.groupby(['Regions',
-                                               'Year', 'Attainment'],
+    if 'Select All' not in region:
+        region_mask = unemployed_rate['Regions'].isin(list(region))
+        unemployed_rate = unemployed_rate[region_mask]
+
+    unemployed_rate = unemployed_rate[['Attainment', 'Year',
+                                       'Unemployed Rate']]
+    unemployed_rate = unemployed_rate.groupby(['Year', 'Attainment'],
                                               as_index=False).sum()
+
     fig = px.line(unemployed_rate, x='Year', y='Unemployed Rate',
                   color='Attainment', markers=True,
-                  title='Unemployed Rate vs Educational \
-                  Attainment 2013 - 2017',
+                  title='Unemployed Rate vs Educational ' +
+                  'Attainment 2013 - 2017',
                   labels={'Year': 'Year',
                           'Regions': 'Region'})
-    y = len(region) * -.07 + -.2
+    y = len(region) * -.2 + -.2
     fig.update_layout(legend=dict(orientation='h', yanchor='bottom',
                                   y=y, xanchor='left', x=0))
     fig.update_layout(title_xanchor='center', title_x=.5)

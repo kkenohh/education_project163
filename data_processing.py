@@ -40,7 +40,8 @@ def create_income_dataset(filename):
         'Chelan & Douglas Counties',
         'Clallam & Jefferson Counties PUMA, Washington!!Total!!Estimate':
         'Clallam & Jefferson Counties',
-        'Cowlitz, Pacific & Wahkiakum Counties PUMA; Washington!!Total!!Estimate':
+        'Cowlitz, Pacific & Wahkiakum Counties PUMA; ' +
+        'Washington!!Total!!Estimate':
         'Cowlitz, Pacific & Wahkiakum Counties',
         'Grant & Kittitas Counties PUMA, Washington!!Total!!Estimate':
         'Grant & Kittitas Counties',
