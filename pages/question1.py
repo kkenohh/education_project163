@@ -97,9 +97,9 @@ def attainment_over_time(race, degree):
     if 'Select All' in race:
         chart = px.line(df, x='year', y='Estimate Population',
                         color='Race', line_group='Attainment Label',
-                        markers=True)
+                        markers=True, labels={'year': 'Year'})
     else:
         chart = px.line(df, x='year', y='Estimate Population',
                         color='Attainment Label', line_group='Race',
-                        markers=True)
+                        markers=True, labels={'year': 'Year'})
     return chart

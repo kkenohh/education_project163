@@ -13,7 +13,7 @@ pd.options.plotting.backend = "plotly"
 app = Dash(__name__, use_pages=True)
 
 app.layout = html.Div(children=[
-    html.H1('Welcome to our mini website!'),
+    html.H1('Our Analysis on Educational Attainment Level in Washington!!'),
     html.Div(children=[
         dcc.Link(f"{page['name']}", href=page['relative_path'],
                  className='nav-buttons')
