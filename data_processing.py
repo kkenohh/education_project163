@@ -248,7 +248,7 @@ def concat_files(dir, file_type):
 
 
 def get_income_data() -> pd.DataFrame:
-    return pd.read_csv('./data/median_income.csv')
+    return pd.read_csv('./data/income/median_income.csv')
 
 
 def clean_employment_data(file):
@@ -365,6 +365,10 @@ def rename_cols(col, df):
     new_cols = [r + ' ' + col for r in regions]
     df = df.rename(columns={old_col: new_col for old_col, new_col in zip(list(old_cols.columns), new_cols)})
     return df
+
+
+def get_employment_data() -> pd.DataFrame:
+    return pd.read_csv('./data/employment/employment_status.csv')
 
 
 def main():
