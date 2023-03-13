@@ -1,6 +1,6 @@
 # Setup
 import dash
-from dash import Dash, html, dcc, Input, Output, callback
+from dash import html, dcc, Input, Output, callback
 import pandas as pd
 import data_processing as dp
 import plotly.express as px

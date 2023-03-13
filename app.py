@@ -1,11 +1,8 @@
 # !!! IF YOU WANT TO RUN DASH, PASTE http://127.0.0.1:8050/ IN WEB BROWSER !!!
 
-from dash import Dash, html, dcc, Input, Output
+from dash import Dash, html, dcc
 import dash
 import pandas as pd
-import data_processing as dp
-import plotly.express as px
-import numpy as np
 pd.options.plotting.backend = "plotly"
 
 
