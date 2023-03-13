@@ -222,33 +222,29 @@ def create_income_dataset(filename):
     # add a year column
     result['Year'] = name
 
-    new_file = 'data/income/income_' + name + '.csv'
+    new_file = 'data/income_og/income_' + name + '.csv'
     result.to_csv(new_file, index=False)
 
+def concat_files(dir, file_type):
+    filenames = os.listdir(dir)
+    file_2013, file_2014, file_2015, file_2016, file_2017 = \
+        [pd.read_csv(os.path.join(dir, f)) for f in filenames]
 
-def merge_income_data(files) -> pd.DataFrame:
-    '''
-    Merge and reformat newly created income datasets
-    '''
-    directory = './data/income'
-    filenames = os.listdir(directory)
+    concat_file = pd.concat([file_2013, file_2014, file_2015, file_2016, file_2017],
+                      ignore_index=True)
 
-    income = pd.concat([pd.read_csv(os.path.join(directory, f))
-                        for f in filenames], ignore_index=True)
+    if(file_type == 'income'):
+        concat_file = concat_file.set_index(['Region', 'Year'])
 
-    income.columns = ['Region', 'Less than High School',
-                      'High school', 'College', 'Bachelor', 'Graduate', 'Year']
-
-    income = income.set_index(['Region', 'Year'])
-
-    # convert crosstable to stacked dataframe
-    income_df = income.stack(level=0)
-    income_df = income_df.to_frame()
-    income_df = income_df.reset_index()
-    income_df.columns = ['Region', 'Year', 'Educational Attainment',
-                         'Median Income']
-
-    income_df.to_csv('data/income/median_income.csv', index=False)
+        # convert crosstable to stacked dataframe
+        income_df = concat_file.stack(level=0)
+        income_df = income_df.to_frame()
+        income_df = income_df.reset_index()
+        income_df.columns = ['Region', 'Year', 'Educational Attainment',
+                            'Median Income']
+        income_df.to_csv('data/income/median_income.csv', index=False)
+    else:
+        concat_file.to_csv('data/employment/employment_status.csv', index=False)
 
 
 def get_income_data() -> pd.DataFrame:
@@ -342,7 +338,7 @@ def clean_employment_data(file):
     # add a year column
     new_df['Year'] = name
 
-    new_file = 'data/employment/employment_status_' + name + '.csv'
+    new_file = 'data/employment_og/employment_status_' + name + '.csv'
     new_df.to_csv(new_file, index=False)
     print('Successfully written to CSV file')
 
@@ -368,19 +364,23 @@ def rename_cols(col, df):
 
 def main():
     # create income files
+    '''
     create_income_dataset('data/median_income_2013.csv')
     create_income_dataset('data/median_income_2014.csv')
     create_income_dataset('data/median_income_2015.csv')
     create_income_dataset('data/median_income_2016.csv')
     create_income_dataset('data/median_income_2017.csv')
-    # merge_income_data('data/income')
+    '''
+    concat_files('data/income_og', 'income')
+    concat_files('data/employment_og', 'employment')
 
+    '''
     clean_employment_data('data/employment_2013.csv')
     clean_employment_data('data/employment_2014.csv')
     clean_employment_data('data/employment_2015.csv')
     clean_employment_data('data/employment_2016.csv')
     clean_employment_data('data/employment_2017.csv')
-
+    '''
 
 
 if __name__ == '__main__':
