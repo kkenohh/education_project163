@@ -44,7 +44,7 @@ layout = html.Div(children=[
 
         The question we are trying to answer with this graph is:
         **Is there a large disparity between any two degrees? Which ones?
-        What could be causing this? Is it different among different races?**
+        What could be causing this?**
 
         The thing that stood out the most after looking at the graphs is the
         most prominent degree among all races is "less than high school".
