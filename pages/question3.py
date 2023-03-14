@@ -55,6 +55,14 @@ layout = html.Div(children=[
     Input(component_id=region_dropdown, component_property='value')
 )
 def employment_status_by_attainment(region):
+    '''
+    Takes a list of regions and produces a line plot showing the
+    unemployment rate over time grouped by attainment level.
+    Parameters:
+        region - a list of regions
+    Returns:
+        a line plot
+    '''
     unemployed_rate = JOINED_EMPLOYMENT_DF[['Regions', 'Attainment', 'Year',
                                             'Unemployed Rate']]
     region_mask = unemployed_rate['Regions'] == region
@@ -77,6 +85,15 @@ def employment_status_by_attainment(region):
     Input(component_id=degree_dropdown, component_property='value')
 )
 def in_work_force_ratio(attainment):
+    '''
+    Takes a list of degree levels and produces a line plot
+    showing the number of people who are employed grouped by the level
+    of degree.
+    Parameters:
+        attainment - a list of degree levels
+    Returns:
+        a line plot
+    '''
     df = JOINED_EMPLOYMENT_DF[['Attainment', 'Year', 'Estimate Population',
                                'Total in labor force']]
     degree_mask = df['Attainment'].isin(list(attainment))
@@ -97,6 +114,14 @@ def in_work_force_ratio(attainment):
     Input(component_id=degree_dropdown, component_property='value')
 )
 def workforce_ratio(attainment):
+    '''
+    Takes a list of degrees and finds the average total population over
+    the years of people who attained the degrees.
+    Parameters:
+        attainment - a list of degree levels
+    Returns:
+        a str of the result
+    '''
     df = JOINED_EMPLOYMENT_DF[['Attainment', 'Year', 'Estimate Population',
                                'Total in labor force']]
     degree_mask = df['Attainment'].isin(list(attainment))
