@@ -12,7 +12,7 @@ EDU_DF = dp.clean_edu_data()
 HEALTH_DF = dp.merge_health()
 # Dropdown options
 COUNTIES = np.insert(HEALTH_DF['County'].sort_values().unique(), 0,
-                    'Select All')
+                     'Select All')
 
 # Create dropdowns
 region_dropdown = dcc.Dropdown(options=COUNTIES, value=[],
