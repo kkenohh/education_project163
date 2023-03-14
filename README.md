@@ -5,6 +5,8 @@ CSE 163: Intermediate Data Programming
 
 Professor: Hunter Schafer
 
+insert info about presentation
+
 ## Required Libraries:
 * `Pandas`
 * `Dash`
@@ -51,12 +53,8 @@ While we include all the original data, the cleaned and merged data for employme
 
 
 
-asd
 
 
 ## Miscellaneous
 
 
-# Quick Markdown Tutorial
-You can see [this guide](https://guides.github.com/features/mastering-markdown/)
-for a quick tutorial on the syntax for Markdown.
