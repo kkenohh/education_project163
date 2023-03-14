@@ -38,10 +38,14 @@ You will need the following data:
     - Contains original data from the United States census regarding employment status in 2016 
 - *income_2017.csv* => data/income_og/income_2017.csv
     - Contains original data from the United States census regarding employment status in 2017 
-> **Installation Line:** All original data attained from the [WA data catalog](https://catalog.data.gov/dataset/educational-attainment-of-washington-population-by-age-race-ethnicity-and-puma-region) and the [United States Census Bureau](https://data.census.gov/table?q=median+income&t=Earnings+(Individuals)&g=0400000US53,53$7950000&tid=ACSST1Y2013.S2001)
+> **Source:** All original data attained from the [WA data catalog](https://catalog.data.gov/dataset/educational-attainment-of-washington-population-by-age-race-ethnicity-and-puma-region) and the [United States Census Bureau](https://data.census.gov/table?q=median+income&t=Earnings+(Individuals)&g=0400000US53,53$7950000&tid=ACSST1Y2013.S2001)
 
 ## Instructions
-Follow the link [our site](http://127.0.0.1:8050/).
+While we include all the original data, the cleaned and merged data for employment status and median income are included in `data/employment` and `data/income` respectfully. The methods for which we reached these data are additionally included below.
+
+1. Make sure all required files are cloned to your device locally within the same directory (folder)
+2. The file `data_analysis.py` contains all of the functions to clean and proces the original data sets and is imported into the other programs as `dp`, running the program will create new files for median incomes and employment by year.
+3. Contained within `pages/` are the individual files for the pages of this project's webpage, you do not need to alter these after running `data_analysis.py`. Running `app.py` will start the webpage, to access the webpage ensure that you not stop running `app.py` and follow the link to [our site](http://127.0.0.1:8050/) or paste <http://127.0.0.1:8050/> into your browser.
 
 
 
