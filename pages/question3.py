@@ -15,19 +15,17 @@ JOINED_EMPLOYMENT_DF = dp.get_joined_employment_data()
 EMPLOYMENT_DF = dp.get_employment_data()
 
 # Helpful Global Variables
-EDU_DEGREES = np.insert(
-    JOINED_EMPLOYMENT_DF['Attainment'].sort_values().unique(), 0, 'Select All')
-REGIONS = np.insert(JOINED_EMPLOYMENT_DF["Regions"].sort_values().unique(), 0,
-                    'Select All')
+EDU_DEGREES = JOINED_EMPLOYMENT_DF['Attainment'].sort_values().unique()
+REGIONS = JOINED_EMPLOYMENT_DF["Regions"].sort_values().unique()
 
 
 # Create Dropdown menus
 degree_dropdown = dcc.Dropdown(options=EDU_DEGREES, value=[],
                                placeholder='Select a Degree',
                                className='dropdown-two', multi=True)
-region_dropdown = dcc.Dropdown(options=REGIONS, value=[],
+region_dropdown = dcc.Dropdown(options=REGIONS, value=None,
                                placeholder='Select a Region',
-                               className='dropdown-two', multi=True)
+                               className='dropdown-two')
 
 # Create layout for this page
 layout = html.Div(children=[
@@ -39,7 +37,8 @@ layout = html.Div(children=[
             region_dropdown,
             dcc.Graph(id='graph3'),
             degree_dropdown,
-            dcc.Graph(id='graph4')
+            dcc.Graph(id='graph4'),
+            html.Div(id='total')
         ], className='graphs'),
         dcc.Markdown('''
         # What did we find?
@@ -58,19 +57,8 @@ layout = html.Div(children=[
 def employment_status_by_attainment(region):
     unemployed_rate = JOINED_EMPLOYMENT_DF[['Regions', 'Attainment', 'Year',
                                             'Unemployed Rate']]
-
-    if 'Select All' not in region:
-        region_mask = unemployed_rate['Regions'].isin(list(region))
-        unemployed_rate = unemployed_rate[region_mask]
-    else:
-        employ = EMPLOYMENT_DF[['Attainment', 'Year', 'Total in labor force',
-                                'Unemploy']]
-        employ = EMPLOYMENT_DF.groupby(['Attainment', 'Year'],
-                                       as_index=False).sum()
-        employ['Unemployed Rate'] = (employ['Unemploy'] /
-                                     employ['Total in labor force']) * 100
-        unemployed_rate = employ
-
+    region_mask = unemployed_rate['Regions'] == region
+    unemployed_rate = unemployed_rate[region_mask]
     fig = px.line(unemployed_rate, x='Year', y='Unemployed Rate',
                   color='Attainment', markers=True,
                   title='Unemployed Rate vs Educational ' +
@@ -94,11 +82,26 @@ def in_work_force_ratio(attainment):
     degree_mask = df['Attainment'].isin(list(attainment))
     df = df[degree_mask]
     df = df.groupby(['Year', 'Attainment'], as_index=False).sum()
-    fig = px.bar(df, x='Year', y=['Estimate Population',
-                                  'Total in labor force'],
-                 barmode='group',
-                 title='Ratio of population in Labor Force per Attainment')
+    fig = px.bar(df, x='Year', y='Total in labor force',
+                 barmode='group', color='Attainment',
+                 title='Number of People in Labor Force per Attainment')
     fig.update_layout(legend=dict(orientation='h', yanchor='bottom',
                                   y=-.5, xanchor='left', x=0))
     fig.update_layout(title_xanchor='center', title_x=.5)
     return fig
+
+
+# Bottom text
+@callback(
+    Output(component_id='total', component_property='children'),
+    Input(component_id=degree_dropdown, component_property='value')
+)
+def workforce_ratio(attainment):
+    df = JOINED_EMPLOYMENT_DF[['Attainment', 'Year', 'Estimate Population',
+                               'Total in labor force']]
+    degree_mask = df['Attainment'].isin(list(attainment))
+    df = df[degree_mask]
+    df = df.groupby(['Year'], as_index=False).sum()
+    print(df.head)
+    return f'Out of {df["Estimate Population"].mean()}\
+            average people per year.'
