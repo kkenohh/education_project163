@@ -20,7 +20,7 @@ def clean_edu_data() -> pd.DataFrame:
     return clean_edu_data
 
 
-def create_income_dataset(filename):
+def create_income_dataset(filename: str) -> None:
     '''
     clean income dataset and create new csv files
     '''
@@ -28,6 +28,7 @@ def create_income_dataset(filename):
 
     if len(data.index) == 23:
         data = data.drop([21, 22])
+
     data = data.drop(range(0, 16))
     cols = data.columns.drop('Label (Grouping)')
     data[cols] = data[cols].apply(lambda x:
@@ -275,9 +276,10 @@ def create_income_dataset(filename):
 
     new_file = 'data/income_og/income_' + name + '.csv'
     result.to_csv(new_file, index=False)
+    print('Successfully write income dataframe to CSV file')
 
 
-def concat_files(dir, file_type):
+def concat_files(dir: str, file_type: str) -> None:
     '''
     Concatenates all the data into one dataset
     Parameters:
@@ -305,6 +307,7 @@ def concat_files(dir, file_type):
     else:
         concat_file.to_csv('data/employment/employment_status.csv',
                            index=False)
+    print('Successfully write merged file to CSV')
 
 
 def get_income_data() -> pd.DataFrame:
@@ -329,6 +332,7 @@ def clean_employment_data(file):
         data = data.drop(range(0, 31))
         data = data.drop([35, 36])
 
+    data = data.reset_index(drop=True)
     data = convert_string(data)
 
     # rename columns
@@ -336,14 +340,7 @@ def clean_employment_data(file):
     data = rename_cols('Employ', data)
     data = rename_cols('Unemploy', data)
 
-    # calculate the actual number of people who is employed / unemployed
-    for i in range(1, len(data.columns) - 1, 3):
-        pop = data.columns[i]
-        employed = data.columns[i+1]
-        unemployed = data.columns[i+2]
-
-        data[employed] = round(data[pop].astype(float) * data[employed])
-        data[unemployed] = round(data[pop].astype(float) * data[unemployed])
+    data = calc_people(data)
 
     # rename cols for each PUMA regions
     # benton
@@ -418,12 +415,7 @@ def clean_employment_data(file):
     new_df = new_df.drop(new_df.columns[2], axis=1)
     new_df = new_df.rename(columns={'Total': 'Total in labor force'})
 
-    # clean attainment columns values
-    pattern = r'.*\xa0(.*)'
-    replacement = r'\1'
-    new_df['Attainment'] = new_df['Attainment'].str.replace(pattern,
-                                                            replacement,
-                                                            regex=True)
+    new_df = clean_col_values(new_df)
 
     name = file.split('.')[0].split('/')[1].split('_')[1]
 
@@ -432,14 +424,14 @@ def clean_employment_data(file):
 
     new_file = 'data/employment_og/employment_status_' + name + '.csv'
     new_df.to_csv(new_file, index=False)
-    print('Successfully written to CSV file')
+    print('Successfully written employment dataframe to CSV file')
 
 
-def convert_string(data) -> pd.DataFrame:
+def convert_string(data: pd.DataFrame) -> pd.DataFrame:
     '''
     Converts strings into floats
     Parameters:
-        data - the dataset
+        data - the dataframe
     Returns:
         an updated dataframe
     '''
@@ -457,14 +449,35 @@ def convert_string(data) -> pd.DataFrame:
     return data
 
 
-def sum_puma(region, status, new_df, old_df):
+def calc_people(data: pd.DataFrame) -> pd.DataFrame:
     '''
-    Sums up the values of the given dataframe based on the given region
+    calculate the actual number of people who is employed / unemployed in
+    employment_status dataframe
+    Param:
+      data - the dataframe
+    Returns:
+      the updated dataframe
+    '''
+    for i in range(0, len(data.columns) - 1, 3):
+        pop = data.columns[i]
+        employed = data.columns[i+1]
+        unemployed = data.columns[i+2]
+
+        data[employed] = round(data[pop].astype(float) * data[employed])
+        data[unemployed] = round(data[pop].astype(float) * data[unemployed])
+    return data
+
+
+def sum_puma(region: str, status: list[str],
+             new_df: pd.DataFrame, old_df: pd.DataFrame):
+    '''
+    Sums up the values of the given dataframe based on the given region and
+    add it to a new dataframe
     Parameters:
         region - region to filter for
-        status -
-        new_df -
-        old_df -
+        status - either total, employ, or unemploy
+        new_df - new dataframe with clean data
+        old_df - old dataframe with unclean data
     '''
     puma = old_df[old_df.filter(like=region).columns]
     for word in status:
@@ -473,6 +486,22 @@ def sum_puma(region, status, new_df, old_df):
 
         new_df[region + ' County ' + word] = puma_status[region +
                                                          ' County ' + word]
+
+
+def clean_col_values(data: pd.DataFrame) -> pd.DataFrame:
+    '''
+    clean attainment columns values
+    param:
+      data - the dataframe
+    returns:
+      a dataframe with all attainment column values cleaned
+    '''
+    pattern = r'.*\xa0(.*)'
+    replacement = r'\1'
+    data['Attainment'] = data['Attainment'].str.replace(pattern,
+                                                        replacement,
+                                                        regex=True)
+    return data
 
 
 def rename_cols(col: str, df: pd.DataFrame) -> pd.DataFrame:
@@ -531,6 +560,7 @@ def merge_data() -> pd.DataFrame:
     # write to CSV
     new_file = 'data/employment/joined_employment_status.csv'
     joined_data.to_csv(new_file, index=False)
+    print('Successfully write to CSV')
 
 
 def get_joined_employment_data() -> pd.DataFrame:
@@ -547,92 +577,6 @@ def get_employment_data() -> pd.DataFrame:
     return pd.read_csv('data/employment/employment_status.csv')
 
 
-# cleaning smoking.csv
-def clean_smoking_data() -> pd.DataFrame:
-    data = pd.read_csv('data/smoking.csv')
-    smoking_data = data.drop(columns=['Lower CI', 'Upper CI'])
-    # "**"" = data supression, "--"" = no data, "NR" = not reliable
-    NR_smoking_data = smoking_data[smoking_data['Percentage'].str.contains("NR") == False]
-    NR_smoking_data = NR_smoking_data.rename(columns={'Count': 'Smoking Count', 'Percentage': 'Percentage Smoking'})
-    """
-    contains_data = NR_smoking_data[NR_smoking_data['Percentage'].str.contains("--") == False]
-    clean_smoking_data = contains_data[contains_data['Percentage'].str.contains("**") == False]
-    """
-    return NR_smoking_data
-
-
-# cleaning poor_mental_health.csv
-def clean_mental_health_data() -> pd.DataFrame:
-    data = pd.read_csv('data/poor_mental_health.csv')
-    mental_health_data = data.drop(columns=['Lower CI', 'Upper CI'])
-    # "**"" = data supression, "--"" = no data, "NR" = not reliable
-    NR_mental_health_data = mental_health_data[mental_health_data['Percentage'].str.contains("NR") == False]
-    NR_mental_health_data = NR_mental_health_data.rename(columns={'Count': 'Poor Mental Health Count', 'Percentage': 'Percentage Poor Mental Health'})
-    """
-    contains_data = NR_smoking_data[NR_smoking_data['Percentage'].str.contains("--") == False]
-    clean_smoking_data = contains_data[contains_data['Percentage'].str.contains("**") == False]
-    """
-    return NR_mental_health_data
-
-
-# cleaning diabetes.csv
-def clean_diabetes_data() -> pd.DataFrame:
-    data = pd.read_csv('data/diabetes.csv')
-    diabetes_data = data.drop(columns=['Lower CI', 'Upper CI'])
-    # "**"" = data supression, "--"" = no data, "NR" = not reliable
-    NR_diabetes_data = diabetes_data[diabetes_data['Percentage'].str.contains("NR") == False]
-    NR_diabetes_data = NR_diabetes_data.rename(columns={'Count': 'Diabetes Count', 'Percentage': 'Percentage Diabetes'})
-    """
-    contains_data = NR_smoking_data[NR_smoking_data['Percentage'].str.contains("--") == False]
-    clean_smoking_data = contains_data[contains_data['Percentage'].str.contains("**") == False]
-    """
-    return NR_diabetes_data
-
-
-# cleaning binge_drinking.csv
-def clean_binge_drinking_data() -> pd.DataFrame:
-    data = pd.read_csv('data/binge_drinking.csv')
-    binge_drinking_data = data.drop(columns=['Lower CI', 'Upper CI'])
-    # "**"" = data supression, "--"" = no data, "NR" = not reliable
-    NR_binge_drinking_data = binge_drinking_data[binge_drinking_data['Percentage'].str.contains("NR") == False]
-    NR_binge_drinking_data = NR_binge_drinking_data.rename(columns={'Count': 'Binge Drinking Count', 'Percentage': 'Binge Drinking Percentage'})
-    """
-    contains_data = NR_smoking_data[NR_smoking_data['Percentage'].str.contains("--") == False]
-    clean_smoking_data = contains_data[contains_data['Percentage'].str.contains("**") == False]
-    """
-    return NR_binge_drinking_data
-
-
-# merging smoking and binge drinking
-def merge_smoking_drinking() -> pd.DataFrame:
-    smoking = clean_smoking_data()
-    drinking = clean_binge_drinking_data()
-    merged_smoking_drinking = pd.merge(smoking, drinking, on=['County'])
-    merged_smoking_drinking['Average Population'] = (merged_smoking_drinking['Population_x'] + merged_smoking_drinking['Population_y']) / 2
-    merged_smoking_drinking = merged_smoking_drinking.drop(columns=['Population_x', 'Population_y'])
-    return merged_smoking_drinking
-
-
-# merging mental health and diabetes
-def merge_mental_diabetes() -> pd.DataFrame:
-    mental_health = clean_mental_health_data()
-    diabetes = clean_diabetes_data()
-    merged_mental_diabetes = pd.merge(mental_health, diabetes, on=['County'])
-    merged_mental_diabetes['Average Population'] = (merged_mental_diabetes['Population_x'] + merged_mental_diabetes['Population_y']) / 2
-    merged_mental_diabetes = merged_mental_diabetes.drop(columns=['Population_x', 'Population_y'])
-    return merged_mental_diabetes
-
-
-# merging merged sets
-def merge_health() -> pd.DataFrame:
-    smoking_drinking = merge_smoking_drinking()
-    mental_diabetes = merge_mental_diabetes()
-    merged = pd.merge(smoking_drinking, mental_diabetes, on=['County'])
-    merged['Average Population'] = (merged['Average Population_x'] + merged['Average Population_y']) / 2
-    merged = merged.drop(columns=['Average Population_x', 'Average Population_y'])
-    return merged
-
-
 def main():
     # create income files
     create_income_dataset('data/median_income_2013.csv')
@@ -640,17 +584,6 @@ def main():
     create_income_dataset('data/median_income_2015.csv')
     create_income_dataset('data/median_income_2016.csv')
     create_income_dataset('data/median_income_2017.csv')
-
-    '''
-    merge_income_data('/data/income')
-    '''
-
-    print('Merged Smoking Drinking:')
-    print(merge_smoking_drinking().columns)
-    print('Merged Mental Diabetes:')
-    print(merge_mental_diabetes().columns)
-    print('Merged health sets:')
-    print(merge_health().columns)
 
     # create employment files
     clean_employment_data('data/employment_2013.csv')
@@ -661,6 +594,7 @@ def main():
 
     concat_files('data/income_og', 'income')
     concat_files('data/employment_og', 'employment')
+
     merge_data()
 
 
