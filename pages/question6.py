@@ -34,5 +34,5 @@ layout = html.Div(children=[
         # What did we find?
 
         ''', className='markdown')
-    ], className='question-six')
+    ], className='question')
 ], className='whole-page')
