@@ -458,7 +458,7 @@ def calc_people(data: pd.DataFrame) -> pd.DataFrame:
     Returns:
       the updated dataframe
     '''
-    for i in range(0, len(data.columns) - 1, 3):
+    for i in range(0, len(data.columns), 3):
         pop = data.columns[i]
         employed = data.columns[i+1]
         unemployed = data.columns[i+2]
