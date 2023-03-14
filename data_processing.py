@@ -226,15 +226,16 @@ def create_income_dataset(filename):
     new_file = 'data/income_og/income_' + name + '.csv'
     result.to_csv(new_file, index=False)
 
+
 def concat_files(dir, file_type):
     filenames = os.listdir(dir)
     file_2013, file_2014, file_2015, file_2016, file_2017 = \
         [pd.read_csv(os.path.join(dir, f)) for f in filenames]
 
-    concat_file = pd.concat([file_2013, file_2014, file_2015, file_2016, file_2017],
-                      ignore_index=True)
+    concat_file = pd.concat([file_2013, file_2014, file_2015, file_2016,
+                             file_2017], ignore_index=True)
 
-    if(file_type == 'income'):
+    if file_type == 'income':
         concat_file = concat_file.set_index(['Region', 'Year'])
 
         # convert crosstable to stacked dataframe
@@ -242,10 +243,11 @@ def concat_files(dir, file_type):
         income_df = income_df.to_frame()
         income_df = income_df.reset_index()
         income_df.columns = ['Region', 'Year', 'Educational Attainment',
-                            'Median Income']
+                             'Median Income']
         income_df.to_csv('data/income/median_income.csv', index=False)
     else:
-        concat_file.to_csv('data/employment/employment_status.csv', index=False)
+        concat_file.to_csv('data/employment/employment_status.csv',
+                           index=False)
 
 
 def get_income_data() -> pd.DataFrame:
@@ -318,7 +320,9 @@ def clean_employment_data(file):
 
     # add other cols
     other_puma = data[data.filter(regex='Label|Chelan|Clallam|Cowlitz|Grant|Grays|Klickitat|Skagit|Okanogan|Whatcom|Whitman').columns]
-    employment_status = pd.merge(employment_status, other_puma, left_on='Attainment', right_on='Label (Grouping)')
+    employment_status = pd.merge(employment_status, other_puma,
+                                 left_on='Attainment',
+                                 right_on='Label (Grouping)')
 
     # reformat df
     stacked = employment_status.set_index('Attainment')
@@ -329,7 +333,8 @@ def clean_employment_data(file):
     new_format['Status'] = new_format['Regions'].apply(lambda x: x.split(' ')[-1])
     new_format['Regions'] = new_format['Regions'].apply(lambda x: x.rsplit(' ', 1)[0])
 
-    new_df = new_format.pivot(index=['Attainment', 'Regions'], columns='Status', values='Count')
+    new_df = new_format.pivot(index=['Attainment', 'Regions'],
+                              columns='Status', values='Count')
     new_df = new_df.reset_index()
     new_df = new_df.drop(new_df.columns[2], axis=1)
     new_df = new_df.rename(columns={'Total': 'Total in labor force'})
@@ -337,7 +342,9 @@ def clean_employment_data(file):
     # clean attainment columns values
     pattern = r'.*\xa0(.*)'
     replacement = r'\1'
-    new_df['Attainment'] = new_df['Attainment'].str.replace(pattern, replacement, regex=True)
+    new_df['Attainment'] = new_df['Attainment'].str.replace(pattern,
+                                                            replacement,
+                                                            regex=True)
 
     name = file.split('.')[0].split('/')[1].split('_')[1]
 
@@ -364,8 +371,10 @@ def rename_cols(col, df):
     regions = list(regions)
 
     new_cols = [r + ' ' + col for r in regions]
-    df = df.rename(columns={old_col: new_col for old_col, new_col in zip(list(old_cols.columns), new_cols)})
+    df = df.rename(columns={old_col: new_col for old_col,
+                            new_col in zip(list(old_cols.columns), new_cols)})
     return df
+
 
 def merge_data() -> pd.DataFrame:
     edu = clean_edu_data()
