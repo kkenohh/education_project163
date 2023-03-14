@@ -55,6 +55,14 @@ layout = html.Div(children=[
     Input(component_id=region_dropdown, component_property='value')
 )
 def employment_status_by_attainment(region):
+    '''
+    Takes a list of regions and produces a line plot showing the unemployment
+    rate over time grouped by level of education attained.
+    Parameters:
+        region - a list of regions
+    Returns:
+        a line plot
+    '''
     unemployed_rate = EMPLOYMENT_DF[['Regions', 'Attainment', 'Year',
                                      'Unemployed Rate']]
 
@@ -73,9 +81,8 @@ def employment_status_by_attainment(region):
                   'Attainment 2013 - 2017',
                   labels={'Year': 'Year',
                           'Regions': 'Region'})
-    y = len(region) * -.2 + -.2
     fig.update_layout(legend=dict(orientation='h', yanchor='bottom',
-                                  y=y, xanchor='left', x=0))
+                                  y=-.5, xanchor='left', x=0))
     fig.update_layout(title_xanchor='center', title_x=.5)
     return fig
 
