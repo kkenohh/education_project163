@@ -47,15 +47,18 @@ def create_income_dataset(filename):
         'Grant & Kittitas Counties',
         'Grays Harbor & Mason Counties PUMA, Washington!!Total!!Estimate':
         'Grays Harbor & Mason Counties',
-        'Lewis, Klickitat & Skamania Counties PUMA; Washington!!Total!!Estimate':
+        'Lewis, Klickitat & Skamania Counties PUMA; Washington!!Total!!\
+            Estimate':
         'Lewis, Klickitat & Skamania Counties',
         'Skagit, Island & San Juan Counties PUMA; Washington!!Total!!Estimate':
         'Skajit, Island & San Juan Counties',
-        'Stevens, Okanogan, Pend Oreille & Ferry Counties PUMA; Washington!!Total!!Estimate':
+        'Stevens, Okanogan, Pend Oreille & Ferry Counties PUMA; Washington!!\
+            Total!!Estimate':
         'Stevens, Okanogan, Pend Oreille & Ferry Counties',
         'Whatcom County--Bellingham City PUMA, Washington!!Total!!Estimate':
         'Whatcom County--Bellingham City',
-        'Whitman, Asotin, Adams, Lincoln, Columbia & Garfield Counties PUMA; Washington!!Total!!Estimate':
+        'Whitman, Asotin, Adams, Lincoln, Columbia & Garfield Counties PUMA;\
+              Washington!!Total!!Estimate':
         'Whitman, Asotin, Adams, Lincoln, Columbia & Garfield Counties',
         'Label (Grouping)': 'Label',
         'Washington!!Total!!Estimate': 'Washington'
@@ -68,18 +71,25 @@ def create_income_dataset(filename):
         = sample.sum(axis=1)
     sample = sample.drop(
         columns=[
-          'Benton & Franklin Counties--Pasco, Richland (North) & West Richland Cities PUMA; Washington!!Total!!Estimate',
-          'Benton County (East Central)--Kennewick & Richland (South) Cities PUMA, Washington!!Total!!Estimate',
-          'Walla Walla, Benton (Outer) & Franklin (Outer) Counties PUMA; Washington!!Total!!Estimate'
+          'Benton & Franklin Counties--Pasco, Richland (North) & West Richland\
+              Cities PUMA; Washington!!Total!!Estimate',
+          'Benton County (East Central)--Kennewick & Richland (South) Cities \
+            PUMA, Washington!!Total!!Estimate',
+          'Walla Walla, Benton (Outer) & Franklin (Outer) Counties PUMA; \
+            Washington!!Total!!Estimate'
         ])
 
     data['Benton, Franklin, Kennewick, Richland & Walla Walla Counties'] \
-        = sample['Benton, Franklin, Kennewick, Richland & Walla Walla Counties']
+        = sample['Benton, Franklin, Kennewick, Richland & \
+                 Walla Walla Counties']
     data = data.drop(
         columns=[
-          'Benton & Franklin Counties--Pasco, Richland (North) & West Richland Cities PUMA; Washington!!Total!!Estimate',
-          'Benton County (East Central)--Kennewick & Richland (South) Cities PUMA, Washington!!Total!!Estimate',
-          'Walla Walla, Benton (Outer) & Franklin (Outer) Counties PUMA; Washington!!Total!!Estimate'
+          'Benton & Franklin Counties--Pasco, Richland (North) & West Richland\
+              Cities PUMA; Washington!!Total!!Estimate',
+          'Benton County (East Central)--Kennewick & Richland (South) Cities \
+            PUMA, Washington!!Total!!Estimate',
+          'Walla Walla, Benton (Outer) & Franklin (Outer) Counties PUMA; \
+            Washington!!Total!!Estimate'
         ])
 
     # clark
@@ -90,10 +100,14 @@ def create_income_dataset(filename):
     data['Clark County'] = new['sum']
     data = data.drop(
         columns=[
-          'Clark County (Southwest)--Vancouver City (West & Central) PUMA, Washington!!Total!!Estimate',
-          'Clark County (West Central)--Salmon Creek & Hazel Dell PUMA, Washington!!Total!!Estimate',
-          'Clark County (Southeast)--Vancouver (East), Camas & Washougal Cities PUMA; Washington!!Total!!Estimate',
-          'Clark County (North)--Battle Ground City & Orchards PUMA, Washington!!Total!!Estimate'
+          'Clark County (Southwest)--Vancouver City (West & Central) PUMA, \
+            Washington!!Total!!Estimate',
+          'Clark County (West Central)--Salmon Creek & Hazel Dell PUMA, \
+            Washington!!Total!!Estimate',
+          'Clark County (Southeast)--Vancouver (East), Camas & Washougal \
+            Cities PUMA; Washington!!Total!!Estimate',
+          'Clark County (North)--Battle Ground City & Orchards PUMA, \
+            Washington!!Total!!Estimate'
         ])
 
     # king
@@ -104,17 +118,28 @@ def create_income_dataset(filename):
     data['King County'] = new['sum']
     data = data.drop(
         columns=[
-          'King County (Northwest)--Shoreline, Kenmore & Bothell (South) Cities PUMA; Washington!!Total!!Estimate',
-          'King County (Northwest)--Redmond, Kirkland Cities, Inglewood & Finn Hill PUMA; Washington!!Total!!Estimate',
-          'King County (Northwest Central)--Greater Bellevue City PUMA, Washington!!Total!!Estimate',
-          'King County (Central)--Sammamish, Issaquah, Mercer Island & Newcastle Cities PUMA; Washington!!Total!!Estimate',
-          'King County (Central)--Renton City, Fairwood, Bryn Mawr & Skyway PUMA; Washington!!Total!!Estimate',
-          'King County (West Central)--Burien, SeaTac, Tukwila Cities & White Center PUMA; Washington!!Total!!Estimate',
-          'King County (Far Southwest)--Federal Way, Des Moines Cities & Vashon Island PUMA; Washington!!Total!!Estimate',
-          'King County (Southwest Central)--Kent City PUMA, Washington!!Total!!Estimate',
-          'King County (Southwest)--Auburn City & Lakeland PUMA, Washington!!Total!!Estimate',
-          'King County (Southeast)--Maple Valley, Covington & Enumclaw Cities PUMA; Washington!!Total!!Estimate',
-          'King County (Northeast)--Snoqualmie City, Cottage Lake, Union Hill & Novelty Hill PUMA; Washington!!Total!!Estimate'
+          'King County (Northwest)--Shoreline, Kenmore & Bothell (South) \
+            Cities PUMA; Washington!!Total!!Estimate',
+          'King County (Northwest)--Redmond, Kirkland Cities, Inglewood & Finn\
+              Hill PUMA; Washington!!Total!!Estimate',
+          'King County (Northwest Central)--Greater Bellevue City PUMA, \
+            Washington!!Total!!Estimate',
+          'King County (Central)--Sammamish, Issaquah, Mercer Island & \
+            Newcastle Cities PUMA; Washington!!Total!!Estimate',
+          'King County (Central)--Renton City, Fairwood, Bryn Mawr & Skyway \
+            PUMA; Washington!!Total!!Estimate',
+          'King County (West Central)--Burien, SeaTac, Tukwila Cities & White \
+            Center PUMA; Washington!!Total!!Estimate',
+          'King County (Far Southwest)--Federal Way, Des Moines Cities & \
+            Vashon Island PUMA; Washington!!Total!!Estimate',
+          'King County (Southwest Central)--Kent City PUMA, Washington!!Total!\
+            !Estimate',
+          'King County (Southwest)--Auburn City & Lakeland PUMA, Washington!!\
+            Total!!Estimate',
+          'King County (Southeast)--Maple Valley, Covington & Enumclaw Cities \
+            PUMA; Washington!!Total!!Estimate',
+          'King County (Northeast)--Snoqualmie City, Cottage Lake, Union Hill \
+            & Novelty Hill PUMA; Washington!!Total!!Estimate'
         ])
 
     # kitsap
@@ -125,8 +150,10 @@ def create_income_dataset(filename):
     data['Kitsap County'] = new['sum']
     data = data.drop(
         columns=[
-          'Kitsap County (North)--Bainbridge Island City & Silverdale PUMA, Washington!!Total!!Estimate',
-          'Kitsap County (South)--Bremerton & Port Orchard Cities PUMA, Washington!!Total!!Estimate'
+          'Kitsap County (North)--Bainbridge Island City & Silverdale PUMA, \
+            Washington!!Total!!Estimate',
+          'Kitsap County (South)--Bremerton & Port Orchard Cities PUMA, \
+            Washington!!Total!!Estimate'
         ])
 
     # pierce
@@ -137,13 +164,20 @@ def create_income_dataset(filename):
     data['Pierce County'] = new['sum']
     data = data.drop(
         columns=[
-          'Pierce County (Central)--Tacoma City (Central) PUMA, Washington!!Total!!Estimate',
-          'Pierce County (Northwest)--Peninsula Region & Tacoma City (West) PUMA, Washington!!Total!!Estimate',
-          'Pierce County (West Central)--Lakewood City & Joint Base Lewis-McChord PUMA, Washington!!Total!!Estimate',
-          'Pierce County (South Central)--Tacoma City (South), Parkland & Spanaway PUMA; Washington!!Total!!Estimate',
-          'Pierce County (North Central)--Tacoma (Port) & Bonney Lake (Northwest) Cities PUMA, Washington!!Total!!Estimate',
-          'Pierce County (East Central)--Puyallup City & South Hill PUMA, Washington!!Total!!Estimate',
-          'Pierce County (Southeast)--Graham, Elk Plain & Prairie Ridge PUMA; Washington!!Total!!Estimate'
+          'Pierce County (Central)--Tacoma City (Central) PUMA, Washington!!\
+            Total!!Estimate',
+          'Pierce County (Northwest)--Peninsula Region & Tacoma City (West) \
+            PUMA, Washington!!Total!!Estimate',
+          'Pierce County (West Central)--Lakewood City & Joint Base Lewis-\
+            McChord PUMA, Washington!!Total!!Estimate',
+          'Pierce County (South Central)--Tacoma City (South), Parkland & \
+            Spanaway PUMA; Washington!!Total!!Estimate',
+          'Pierce County (North Central)--Tacoma (Port) & Bonney Lake \
+            (Northwest) Cities PUMA, Washington!!Total!!Estimate',
+          'Pierce County (East Central)--Puyallup City & South Hill PUMA, \
+            Washington!!Total!!Estimate',
+          'Pierce County (Southeast)--Graham, Elk Plain & Prairie Ridge PUMA; \
+            Washington!!Total!!Estimate'
         ])
 
     # spokane
@@ -154,10 +188,14 @@ def create_income_dataset(filename):
     data['Spokane County'] = new['sum']
     data = data.drop(
         columns=[
-          'Spokane County (North Central)--Spokane City (North) PUMA, Washington!!Total!!Estimate',
-          'Spokane County (South Central)--Spokane City (South) PUMA, Washington!!Total!!Estimate',
-          'Spokane County (East Central)--Greater Spokane Valley City PUMA, Washington!!Total!!Estimate',
-          'Spokane County (Outer)--Cheney City PUMA, Washington!!Total!!Estimate'
+          'Spokane County (North Central)--Spokane City (North) PUMA, \
+            Washington!!Total!!Estimate',
+          'Spokane County (South Central)--Spokane City (South) PUMA, \
+            Washington!!Total!!Estimate',
+          'Spokane County (East Central)--Greater Spokane Valley City PUMA, \
+            Washington!!Total!!Estimate',
+          'Spokane County (Outer)--Cheney City PUMA, Washington!!Total!!\
+            Estimate'
         ])
 
     # snohomish
@@ -168,12 +206,18 @@ def create_income_dataset(filename):
     data['Snohomish County'] = new['sum']
     data = data.drop(
         columns=[
-          'Snohomish County (South Central)--Bothell (North), Mill Creek Cities & Silver Firs PUMA; Washington!!Total!!Estimate',
-          'Snohomish County (Central & Southeast)--Lake Stevens & Monroe Cities PUMA, Washington!!Total!!Estimate',
-          'Snohomish County (North)--Marysville & Arlington Cities PUMA, Washington!!Total!!Estimate',
-          'Snohomish County (Southwest)--Edmonds, Lynnwood & Mountlake Terrace Cities PUMA; Washington!!Total!!Estimate',
-          'Snohomish County (West Central)--Mukilteo & Everett (Southwest) Cities PUMA, Washington!!Total!!Estimate',
-          'Snohomish County (Central)--Everett City (Central & East) & Eastmont PUMA, Washington!!Total!!Estimate'
+          'Snohomish County (South Central)--Bothell (North), Mill Creek \
+            Cities & Silver Firs PUMA; Washington!!Total!!Estimate',
+          'Snohomish County (Central & Southeast)--Lake Stevens & Monroe \
+            Cities PUMA, Washington!!Total!!Estimate',
+          'Snohomish County (North)--Marysville & Arlington Cities PUMA, \
+            Washington!!Total!!Estimate',
+          'Snohomish County (Southwest)--Edmonds, Lynnwood & Mountlake Terrace\
+              Cities PUMA; Washington!!Total!!Estimate',
+          'Snohomish County (West Central)--Mukilteo & Everett (Southwest) \
+            Cities PUMA, Washington!!Total!!Estimate',
+          'Snohomish County (Central)--Everett City (Central & East) & \
+            Eastmont PUMA, Washington!!Total!!Estimate'
         ])
 
     # thurston
@@ -184,7 +228,8 @@ def create_income_dataset(filename):
     data['Thurston County'] = new['sum']
     data = data.drop(
         columns=[
-          'Thurston County (Central)--Olympia, Lacey & Tumwater Cities PUMA; Washington!!Total!!Estimate',
+          'Thurston County (Central)--Olympia, Lacey & Tumwater Cities PUMA; \
+            Washington!!Total!!Estimate',
           'Thurston County (Outer) PUMA, Washington!!Total!!Estimate'
         ])
 
@@ -196,8 +241,10 @@ def create_income_dataset(filename):
     data['Yakima County'] = new['sum']
     data = data.drop(
         columns=[
-          'Yakima County (Central)--Greater Yakima City PUMA, Washington!!Total!!Estimate',
-          'Yakima County (Outer)--Sunnyside & Grandview Cities PUMA, Washington!!Total!!Estimate',
+          'Yakima County (Central)--Greater Yakima City PUMA, Washington!!\
+            Total!!Estimate',
+          'Yakima County (Outer)--Sunnyside & Grandview Cities PUMA, \
+            Washington!!Total!!Estimate',
         ])
 
     # drop unnecessary columns
@@ -205,9 +252,12 @@ def create_income_dataset(filename):
         columns=[
           'Seattle City (Northwest) PUMA, Washington!!Total!!Estimate',
           'Seattle City (Northeast) PUMA, Washington!!Total!!Estimate',
-          'Seattle City (Downtown)--Queen Anne & Magnolia PUMA, Washington!!Total!!Estimate',
-          'Seattle City (Southeast)--Capitol Hill PUMA, Washington!!Total!!Estimate',
-          'Seattle City (West)--Duwamish & Beacon Hill PUMA, Washington!!Total!!Estimate'
+          'Seattle City (Downtown)--Queen Anne & Magnolia PUMA, Washington!\
+            !Total!!Estimate',
+          'Seattle City (Southeast)--Capitol Hill PUMA, Washington!!Total!\
+            !Estimate',
+          'Seattle City (West)--Duwamish & Beacon Hill PUMA, Washington!!Total\
+            !!Estimate'
         ])
 
     # clean data
@@ -226,15 +276,17 @@ def create_income_dataset(filename):
     new_file = 'data/income_og/income_' + name + '.csv'
     result.to_csv(new_file, index=False)
 
+
 def concat_files(dir, file_type):
     filenames = os.listdir(dir)
     file_2013, file_2014, file_2015, file_2016, file_2017 = \
         [pd.read_csv(os.path.join(dir, f)) for f in filenames]
 
-    concat_file = pd.concat([file_2013, file_2014, file_2015, file_2016, file_2017],
-                      ignore_index=True)
+    concat_file = pd.concat([file_2013, file_2014, file_2015,
+                             file_2016, file_2017],
+                            ignore_index=True)
 
-    if(file_type == 'income'):
+    if file_type == 'income':
         concat_file = concat_file.set_index(['Region', 'Year'])
 
         # convert crosstable to stacked dataframe
@@ -242,10 +294,11 @@ def concat_files(dir, file_type):
         income_df = income_df.to_frame()
         income_df = income_df.reset_index()
         income_df.columns = ['Region', 'Year', 'Educational Attainment',
-                            'Median Income']
+                             'Median Income']
         income_df.to_csv('data/income/median_income.csv', index=False)
     else:
-        concat_file.to_csv('data/employment/employment_status.csv', index=False)
+        concat_file.to_csv('data/employment/employment_status.csv',
+                           index=False)
 
 
 def get_income_data() -> pd.DataFrame:
@@ -282,24 +335,40 @@ def clean_employment_data(file):
     # benton
     benton = data[data.filter(like='Benton').columns]
     benton_total = benton[benton.filter(like='Total').columns].copy()
-    benton_total['Benton, Franklin, Kennewick, Richland & Walla Walla Counties Total'] = benton_total.sum(axis=1)
+    benton_total['Benton, Franklin, Kennewick, Richland & Walla Walla \
+                 Counties Total'] = benton_total.sum(axis=1)
 
     benton = data[data.filter(like='Benton').columns]
     benton_employ = benton[benton.filter(like='Employ').columns].copy()
-    benton_employ['Benton, Franklin, Kennewick, Richland & Walla Walla Counties Employ'] = benton_employ.sum(axis=1)
+    benton_employ['Benton, Franklin, Kennewick, Richland & Walla Walla \
+                  Counties Employ'] = benton_employ.sum(axis=1)
 
     benton = data[data.filter(like='Benton').columns]
     benton_unemploy = benton[benton.filter(like='Unemploy').columns].copy()
-    benton_unemploy['Benton, Franklin, Kennewick, Richland & Walla Walla Counties Unemploy'] = benton_unemploy.sum(axis=1)
+    benton_unemploy['Benton, Franklin, Kennewick, Richland & Walla Walla \
+                    Counties Unemploy'] = benton_unemploy.sum(axis=1)
 
     # create a new df
     employment_status = pd.DataFrame()
     employment_status['Attainment'] = data['Label (Grouping)']
     status = ['Total', 'Employ', 'Unemploy']
 
-    employment_status['Benton, Franklin, Kennewick, Richland & Walla Walla Counties Total'] = benton_total['Benton, Franklin, Kennewick, Richland & Walla Walla Counties Total']
-    employment_status['Benton, Franklin, Kennewick, Richland & Walla Walla Counties Employ'] = benton_employ['Benton, Franklin, Kennewick, Richland & Walla Walla Counties Employ']
-    employment_status['Benton, Franklin, Kennewick, Richland & Walla Walla Counties Unemploy'] = benton_unemploy['Benton, Franklin, Kennewick, Richland & Walla Walla Counties Unemploy']
+    employment_status['Benton, Franklin, Kennewick, Richland & Walla Walla \
+                      Counties Total'] = benton_total['Benton, Franklin, \
+                                                      Kennewick, Richland & \
+                                                      Walla Walla Counties \
+                                                      Total']
+    employment_status['Benton, Franklin, Kennewick, Richland & Walla Walla \
+                      Counties Employ'] = benton_employ['Benton, Franklin, \
+                                                        Kennewick, Richland & \
+                                                        Walla Walla Counties \
+                                                        Employ']
+    employment_status['Benton, Franklin, Kennewick, Richland & Walla Walla \
+                      Counties Unemploy'] = benton_unemploy['Benton, Franklin,\
+                                                             Kennewick, \
+                                                            Richland & Walla \
+                                                            Walla Counties \
+                                                            Unemploy']
 
     sum_puma('Clark', status, employment_status, data)
     sum_puma('Kitsap', status, employment_status, data)
@@ -311,7 +380,9 @@ def clean_employment_data(file):
     sum_puma('Yakima', status, employment_status, data)
 
     # add other cols
-    other_puma = data[data.filter(regex='Label|Chelan|Clallam|Cowlitz|Grant|Grays|Klickitat|Skagit|Okanogan|Whatcom|Whitman').columns]
+    other_puma = data[data.filter(regex='Label|Chelan|Clallam|Cowlitz|Grant|\
+                                  Grays|Klickitat|Skagit|Okanogan|Whatcom|\
+                                  Whitman').columns]
     employment_status = pd.merge(employment_status, other_puma,
                                  left_on='Attainment',
                                  right_on='Label (Grouping)')
