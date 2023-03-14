@@ -82,9 +82,10 @@ def employment_status_by_attainment(region):
 # Bottom Graph
 @callback(
     Output(component_id='graph4', component_property='figure'),
-    Input(component_id=degree_dropdown, component_property='value')
+    Input(component_id=degree_dropdown, component_property='value'),
+    Input(component_id=region_dropdown, component_property='value')
 )
-def in_work_force_ratio(attainment):
+def in_work_force_ratio(attainment, region):
     '''
     Takes a list of degree levels and produces a line plot
     showing the number of people who are employed grouped by the level
@@ -94,11 +95,15 @@ def in_work_force_ratio(attainment):
     Returns:
         a line plot
     '''
-    df = JOINED_EMPLOYMENT_DF[['Attainment', 'Year', 'Estimate Population',
-                               'Total in labor force']]
+    df = JOINED_EMPLOYMENT_DF[['Regions', 'Attainment', 'Year',
+                               'Estimate Population', 'Total in labor force']]
+    region_mask = df['Regions'] == region
+    df = df[region_mask]
     degree_mask = df['Attainment'].isin(list(attainment))
     df = df[degree_mask]
-    df = df.groupby(['Year', 'Attainment'], as_index=False).sum()
+    df = df.groupby(['Year', 'Attainment'],
+                    as_index=False)[list(['Estimate Population',
+                                    'Total in labor force'])].sum()
     fig = px.bar(df, x='Year', y='Total in labor force',
                  barmode='group', color='Attainment',
                  title='Number of People in Labor Force per Attainment')
@@ -111,9 +116,10 @@ def in_work_force_ratio(attainment):
 # Bottom text
 @callback(
     Output(component_id='total', component_property='children'),
-    Input(component_id=degree_dropdown, component_property='value')
+    Input(component_id=degree_dropdown, component_property='value'),
+    Input(component_id=region_dropdown, component_property='value')
 )
-def workforce_ratio(attainment):
+def workforce_ratio(attainment, region):
     '''
     Takes a list of degrees and finds the average total population over
     the years of people who attained the degrees.
@@ -122,10 +128,11 @@ def workforce_ratio(attainment):
     Returns:
         a str of the result
     '''
-    df = JOINED_EMPLOYMENT_DF[['Attainment', 'Year', 'Estimate Population',
-                               'Total in labor force']]
+    df = JOINED_EMPLOYMENT_DF[['Regions', 'Attainment', 'Year',
+                               'Estimate Population', 'Total in labor force']]
+    region_mask = df['Regions'] == region
+    df = df[region_mask]
     degree_mask = df['Attainment'].isin(list(attainment))
     df = df[degree_mask]
-    df = df.groupby(['Year'], as_index=False).sum()
-    print(df.head)
+    df = df.groupby(['Year'], as_index=False)['Estimate Population'].sum()
     return f'Out of around {df["Estimate Population"].mean()} people.'
