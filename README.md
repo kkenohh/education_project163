@@ -46,6 +46,8 @@ While we include all the original data, the cleaned and merged data for employme
 1. Make sure all required files are cloned to your device locally within the same directory (folder)
 2. The file `data_analysis.py` contains all of the functions to clean and proces the original data sets and is imported into the other programs as `dp`, running the program will create new files for median incomes and employment by year.
 3. Contained within `pages/` are the individual files for the pages of this project's webpage, you do not need to alter these after running `data_analysis.py`. Running `app.py` will start the webpage, to access the webpage ensure that you not stop running `app.py` and follow the link to [our site](http://127.0.0.1:8050/) or paste <http://127.0.0.1:8050/> into your browser.
+4. Within the webpage you can navigate to each data visualization by clicking through the pages where you will find blank graphs with manipulatable drop downs where you can select specific filters to view.
+5. To run the machine learning model you will need to run `data_analysis.py`, doing so will create and assess models that predict the income and education attainment level based on the input data set `data/income/median_income.csv` respectively.
 
 
 
