@@ -11,12 +11,13 @@ dash.register_page(__name__,
                    name='Educational Attainment vs Employment Status')
 
 # Dataset
+JOINED_EMPLOYMENT_DF = dp.get_joined_employment_data()
 EMPLOYMENT_DF = dp.get_employment_data()
 
 # Helpful Global Variables
 EDU_DEGREES = np.insert(
-    EMPLOYMENT_DF['Attainment'].sort_values().unique(), 0, 'Select All')
-REGIONS = np.insert(EMPLOYMENT_DF["Regions"].sort_values().unique(), 0,
+    JOINED_EMPLOYMENT_DF['Attainment'].sort_values().unique(), 0, 'Select All')
+REGIONS = np.insert(JOINED_EMPLOYMENT_DF["Regions"].sort_values().unique(), 0,
                     'Select All')
 
 
@@ -45,7 +46,7 @@ layout = html.Div(children=[
 
         [Add analysis].
         ''', className='markdown')
-    ], className='question')
+    ], className='question-one')
 ], className='whole-page')
 
 
@@ -55,34 +56,28 @@ layout = html.Div(children=[
     Input(component_id=region_dropdown, component_property='value')
 )
 def employment_status_by_attainment(region):
-    '''
-    Takes a list of regions and produces a line plot showing the unemployment
-    rate over time grouped by level of education attained.
-    Parameters:
-        region - a list of regions
-    Returns:
-        a line plot
-    '''
-    unemployed_rate = EMPLOYMENT_DF[['Regions', 'Attainment', 'Year',
+    unemployed_rate = JOINED_EMPLOYMENT_DF[['Regions', 'Attainment', 'Year',
                                      'Unemployed Rate']]
 
     if 'Select All' not in region:
         region_mask = unemployed_rate['Regions'].isin(list(region))
         unemployed_rate = unemployed_rate[region_mask]
-
-    unemployed_rate = unemployed_rate[['Attainment', 'Year',
-                                       'Unemployed Rate']]
-    unemployed_rate = unemployed_rate.groupby(['Year', 'Attainment'],
-                                              as_index=False).sum()
+    else:
+        employ = EMPLOYMENT_DF[['Attainment', 'Year', 'Total in labor force',
+                                'Unemploy']]
+        employ = EMPLOYMENT_DF.groupby(['Attainment', 'Year'], as_index=False).sum()
+        employ['Unemployed Rate'] = (employ['Unemploy'] / employ['Total in labor force']) * 100
+        unemployed_rate = employ
 
     fig = px.line(unemployed_rate, x='Year', y='Unemployed Rate',
                   color='Attainment', markers=True,
                   title='Unemployed Rate vs Educational ' +
-                  'Attainment 2013 - 2017',
+                  'Attainment by Region 2013 - 2017',
                   labels={'Year': 'Year',
                           'Regions': 'Region'})
+    y = len(region) * -.2 + -.2
     fig.update_layout(legend=dict(orientation='h', yanchor='bottom',
-                                  y=-.5, xanchor='left', x=0))
+                                  y=y, xanchor='left', x=0))
     fig.update_layout(title_xanchor='center', title_x=.5)
     return fig
 
@@ -93,7 +88,7 @@ def employment_status_by_attainment(region):
     Input(component_id=degree_dropdown, component_property='value')
 )
 def in_work_force_ratio(attainment):
-    df = EMPLOYMENT_DF[['Attainment', 'Year', 'Estimate Population',
+    df = JOINED_EMPLOYMENT_DF[['Attainment', 'Year', 'Estimate Population',
                         'Total in labor force']]
     degree_mask = df['Attainment'].isin(list(attainment))
     df = df[degree_mask]

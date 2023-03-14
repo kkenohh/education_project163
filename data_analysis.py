@@ -33,7 +33,7 @@ def predict_income(data: pd.DataFrame):
 
 
 def predict_attainment(data: pd.DataFrame):
-    # one-hot encoding educational attainment and region
+    # one-hot encoding region
     features = data.loc[:, data.columns != 'Educational Attainment']
     features = pd.get_dummies(features)
     labels = data['Educational Attainment']
@@ -59,10 +59,11 @@ def predict_attainment(data: pd.DataFrame):
 
 
 def main():
-    income = pd.read_csv('data/median_income.csv')
+    income = pd.read_csv('data/income/median_income.csv')
     predict_income(income)
     predict_attainment(income)
 
 
 if __name__ == '__main__':
     main()
+
