@@ -16,7 +16,7 @@ Professor: Hunter Schafer
 ## Required Data:
 You will need the following data:
 
-* educational_attainment.csv => data/educational_attainment.csv
+- educational_attainment.csv => data/educational_attainment.csv
     - 
 * employment_status_2013.csv => data/employment_status_2013.csv
     -  
