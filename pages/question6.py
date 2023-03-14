@@ -36,3 +36,9 @@ layout = html.Div(children=[
         ''', className='markdown')
     ], className='question')
 ], className='whole-page')
+
+# Top graph
+def health_to_county(county):
+    df = HEALTH_DF
+    if 'Select All' not in county:
+        county_mask = df['County'].isin(list(county))
