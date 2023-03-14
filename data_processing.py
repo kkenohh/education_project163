@@ -420,15 +420,21 @@ def clean_employment_data(file):
     new_df.to_csv(new_file, index=False)
     print('Successfully written to CSV file')
 
+
 def convert_string(data) -> pd.DataFrame:
     # update the dataframe with float values for columns with percentage
     change_cols = data.filter(regex=r'([a-zA-z]+|\W+)ploy').columns
-    data[change_cols] = data[change_cols].apply(lambda num: num.str.rstrip('%').astype('float') / 100.0)
+    data[change_cols] = \
+        data[change_cols].apply(lambda num:
+                                num.str.rstrip('%').astype('float') / 100.0)
 
     # update the dataframe with float values for columns with string numbers
     num_cols = data.filter(regex=r'([a-zA-z]+|\W+)Total').columns
-    data[num_cols] = data[num_cols].apply(lambda num: num.str.replace(',', '').astype(float))
+    data[num_cols] = \
+        data[num_cols].apply(lambda num:
+                             num.str.replace(',', '').astype(float))
     return data
+
 
 def sum_puma(region, status, new_df, old_df):
     puma = old_df[old_df.filter(like=region).columns]
