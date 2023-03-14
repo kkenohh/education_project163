@@ -278,6 +278,12 @@ def create_income_dataset(filename):
 
 
 def concat_files(dir, file_type):
+    '''
+    Concatenates all the data into one dataset
+    Parameters:
+        dir - path to dir
+        file_type - what the dataset is a collection of
+    '''
     filenames = os.listdir(dir)
     file_2013, file_2014, file_2015, file_2016, file_2017 = \
         [pd.read_csv(os.path.join(dir, f)) for f in filenames]
@@ -302,10 +308,18 @@ def concat_files(dir, file_type):
 
 
 def get_income_data() -> pd.DataFrame:
+    '''
+    Returns a dataframe of the median income csv
+    '''
     return pd.read_csv('./data/income/median_income.csv')
 
 
 def clean_employment_data(file):
+    '''
+    Cleans the employment data file and writes to a new one
+    Parameters:
+        file - path to csv file
+    '''
     data = pd.read_csv(file)
 
     # drop unneeded rows
@@ -422,6 +436,13 @@ def clean_employment_data(file):
 
 
 def convert_string(data) -> pd.DataFrame:
+    '''
+    Converts strings into floats
+    Parameters:
+        data - the dataset
+    Returns:
+        an updated dataframe
+    '''
     # update the dataframe with float values for columns with percentage
     change_cols = data.filter(regex=r'([a-zA-z]+|\W+)ploy').columns
     data[change_cols] = \
@@ -437,6 +458,14 @@ def convert_string(data) -> pd.DataFrame:
 
 
 def sum_puma(region, status, new_df, old_df):
+    '''
+    Sums up the values of the given dataframe based on the given region
+    Parameters:
+        region - region to filter for
+        status -
+        new_df -
+        old_df -
+    '''
     puma = old_df[old_df.filter(like=region).columns]
     for word in status:
         puma_status = puma[puma.filter(like=word).columns].copy()
@@ -446,7 +475,10 @@ def sum_puma(region, status, new_df, old_df):
                                                          ' County ' + word]
 
 
-def rename_cols(col, df):
+def rename_cols(col: str, df: pd.DataFrame) -> pd.DataFrame:
+    '''
+    Renames the values of the given column in the given dataframe
+    '''
     old_cols = df.filter(like=col)
     regions = old_cols.columns.str.extract(r'^(.*?(?= PUMA))', expand=False)
     regions = list(regions)
@@ -458,6 +490,9 @@ def rename_cols(col, df):
 
 
 def merge_data() -> pd.DataFrame:
+    '''
+    Merges the employment csv with the education one and returns it
+    '''
     edu = clean_edu_data()
     employment = pd.read_csv('./data/employment/employment_status.csv')
 
@@ -499,10 +534,16 @@ def merge_data() -> pd.DataFrame:
 
 
 def get_joined_employment_data() -> pd.DataFrame:
+    '''
+    returns a DataFrame of the joined_employment_status csv
+    '''
     return pd.read_csv('data/employment/joined_employment_status.csv')
 
 
 def get_employment_data() -> pd.DataFrame:
+    '''
+    returns a DataFrame of the employment_status csv
+    '''
     return pd.read_csv('data/employment/employment_status.csv')
 
 

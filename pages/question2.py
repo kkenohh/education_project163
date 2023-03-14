@@ -35,9 +35,13 @@ layout = html.Div(children=[
         dcc.Markdown('''
         # What did we find?
 
+        The question we are trying to answer with these graphs are: **
+
         In this analysis, we looked at the correlation between median income
         of a region, and the number of people who attained "less than high
         school".
+
+
         ''', className='markdown')
     ], className='question')
 ], className='whole-page')
