@@ -7,6 +7,8 @@ import plotly.express as px
 import numpy as np
 pd.options.plotting.backend = "plotly"
 
+dash.register_page(__name__, name='Education vs Health')
+
 # Datasets
 EDU_DF = dp.clean_edu_data()
 HEALTH_DF = dp.merge_health()

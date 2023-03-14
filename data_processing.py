@@ -489,7 +489,7 @@ def merge_mental_diabetes() -> pd.DataFrame:
 
 
 # merging merged sets
-def merge_all() -> pd.DataFrame:
+def merge_health() -> pd.DataFrame:
     smoking_drinking = merge_smoking_drinking()
     mental_diabetes = merge_mental_diabetes()
     merged = pd.merge(smoking_drinking, mental_diabetes, on=['County'])
@@ -515,7 +515,7 @@ def main():
     print('Merged Mental Diabetes:')
     print(merge_mental_diabetes().columns)
     print('Merged health sets:')
-    print(merge_all().columns)
+    print(merge_health().columns)
 
     # create employment files
     clean_employment_data('data/employment_2013.csv')
