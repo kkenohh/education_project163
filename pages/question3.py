@@ -4,7 +4,6 @@ from dash import html, dcc, Input, Output, callback
 import pandas as pd
 import data_processing as dp
 import plotly.express as px
-import numpy as np
 pd.options.plotting.backend = "plotly"
 
 dash.register_page(__name__,
