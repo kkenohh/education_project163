@@ -15,15 +15,24 @@ layout = html.Div(children=[
     dcc.Markdown('''
     # Research Questions
 
-    1. Is there large disparity between any of the levels of education
+    ## 1. Is there large disparity between any of the levels of education
     attained? Between which degrees? What could be causing this disparity?
 
-    2. How has education attainment level changed over time? Are there any
+    ## 2. How has education attainment level changed over time? Are there any
     factors that are contributing to this pattern? If so, what?
 
-    3. Is there any correlation between educational attainment and the
+    ## 3. Can we predict a person's median income based on their educational
+    attainment level?
+
+    ## 4. Given a person's median income and their PUMA region, can we predict
+    their educational level?
+
+    ## 5. Is there any correlation between educational attainment and the
     unemployment rate in the 5 years interval 2013-2017? Especially does having
     higher educational attainment result in lower unemployment rate?
+
+    ## 6. Which educational attainment has the highest ratio of people in the
+    labor force?
     ''', className='markdown home'),
     dcc.Markdown('''
     # Motivation
