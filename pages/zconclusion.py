@@ -9,12 +9,7 @@ layout = html.Div(children=[
 
     ''', className='markdown home'),
     dcc.Markdown('''
-    # 
-
-    ''', className='markdown home'),
-    dcc.Markdown('''
     # Machine Learning Results
 
-    
     ''', className='markdown home')
 ], className='home-div')
