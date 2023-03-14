@@ -81,12 +81,12 @@ layout = html.Div(children=[
         By examining the second graph, it is noticeable that the number of
         individuals who have attained a "Less than high school" degree is the
         smallest when compared to the other three educational attainment levels
-        from 2014 to 2017. However, there was an exception in 2013 where
-        individuals who have achieved a "Bachelor's degree or higher" had the
-        smallest number. This could be due to the fact that individuals with
+        from 2013 to 2017. This could be due to the fact that individuals with
         a "Bachelor's degree or higher" may choose to continue their education,
         thus causing this low ratio. On the other hand, the ratios for the
-        other three educational attainment levels are relatively similar.
+        other three educational attainment levels are relatively similar, where
+        all three are much higher than the number of people with "Less than
+        a high school" degree.
         ''', className='markdown')
     ], className='question')
 ], className='whole-page')
