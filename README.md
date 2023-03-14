@@ -1,4 +1,4 @@
-# Education Project 163
+# Analysis of Education Attainment and Income of PUMA Regions in Washington
 Report by Alison, Ken, Willis
 
 CSE 163: Intermediate Data Programming
