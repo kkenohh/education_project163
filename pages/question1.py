@@ -85,6 +85,16 @@ layout = html.Div(children=[
     Input(component_id=degree_dropdown, component_property='value')
 )
 def attainment_over_time(race, degree):
+    '''
+    Takes a list of races and list of degrees and produces a line plot
+    that showing the number of people who achieved a certain education
+    level over time grouped by race or degree.
+    Parameters:
+        race - a list of races
+        degree - a list of degrees
+    Returns:
+        a line plot
+    '''
     df = EDU_DF[['year', 'Race', 'Estimate Population', 'Attainment Label']]
     if 'Select All' not in race:
         race_mask = df['Race'].isin(list(race))

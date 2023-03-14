@@ -48,7 +48,15 @@ layout = html.Div(children=[
     Output(component_id='graph2', component_property='figure'),
     Input(component_id=region_dropdown, component_property='value')
 )
-def income_over_time(region):
+def degree_over_time(region):
+    '''
+    Takes a list of regions and produces a line plot showing the level
+    of education attained over time grouped by PUMA region.
+    Parameters:
+        region - a list of regions
+    Returns:
+        a line plot
+    '''
     df = EDU_DF[['Puma Label', 'year', 'Estimate Population',
                  'Attainment Label']]
     region_mask = df['Puma Label'].isin(list(region))
@@ -74,7 +82,15 @@ def income_over_time(region):
     Output(component_id='graph1', component_property='figure'),
     Input(component_id=region_dropdown, component_property='value')
 )
-def degree_over_time(region):
+def income_over_time(region):
+    '''
+    Takes a list of regions and produces a line plot showing the median
+    income over time grouped by PUMA region.
+    Parameters:
+        region - a list of regions
+    Returns:
+        a line plot
+    '''
     df = INCOME_DF[['Region', 'Year', 'Median Income']]
     region_mask = df['Region'].isin(list(region))
     df = df[region_mask]
