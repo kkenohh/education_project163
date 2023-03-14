@@ -35,13 +35,33 @@ layout = html.Div(children=[
         dcc.Markdown('''
         # What did we find?
 
-        The question we are trying to answer with these graphs are: **
+        The questions we are trying to answer with these graphs are: **How has
+        education attainment level changed over time? What factors could be
+        contributing to this pattern, if there is one?**
 
-        In this analysis, we looked at the correlation between median income
-        of a region, and the number of people who attained "less than high
-        school".
+        We made the first graph to show the education attainment level over
+        time. Then, we decided to explore how income impacts the education
+        attainment level so we added a graph that shows how median income
+        changes over time. The first region that we looked at was King
+        County because we live there and it also has the highest population
+        count in Washington. We found that there doesn't seem to be much
+        correlation between income and education attainment. Income steadily
+        increases over time, while the number of people who don't achieve
+        a high school degree go up and down, not matching the pattern of
+        the income graph. 
 
+        The second region we looked at was Clark County because it has the
+        fifth highest population count, and it's also in a different part
+        of Washington. We found that while income was steadily increasing,
+        the number of people who didn't achieve a high school degree
+        increased, and then decreased. So once again we can't draw any
+        conclusions from this.
 
+        After look at a lot of other regions, we were able to conclude that
+        there doesn't seem to be any correlation between income level and
+        the number of people who don't achieve a high school diploma. This
+        is surprising because we thought that lower income would decrease
+        education quality because of less resources and quality teachers.
         ''', className='markdown')
     ], className='question')
 ], className='whole-page')
