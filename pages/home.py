@@ -36,8 +36,8 @@ layout = html.Div(children=[
     In addition, data regarding levels of educational attainment can provide
     critical information showing flaws and benefits of education programs
     currently in place. Being students im Washington, we are interested in
-    analyzing and predicting trends in educational achievement across groups as
-    well as considering implementations to improve education for groups with
+    analyzing and predicting trends in educational achievment across groups as
+    well as considering implmentations to improve education for groups with
     less documented and recorded data.
 
     ''', className='markdown home'),
@@ -48,13 +48,28 @@ layout = html.Div(children=[
     education level attained by different categories of ages, races, and PUMA
     regions; from 2013 to 2017 in Washington state. Each row within the dataset
     contains a column called "Population Estimate (Count)" which tells us the
-    total number of people for that group that attained a specific level of
+    total number of people for that group that attained a specfic level of
     education. The additional datasets that we used were source data from
-    government censuses
+    government censuses regarding income and employment status trends within
+    different counties in Washington from 2013 to 2017.
 
+    ## Education Attainment Levels:
     * [Education Dataset](https://catalog.data.gov/dataset/educational-attainment-of-washington-population-by-age-race-ethnicity-and-puma-region)
-    * 
-    * 
+    * [Education CSV Download](https://www.google.com/url?q=https://data.wa.gov/api/views/aqa5-4cee/rows.csv?accessType%3DDOWNLOAD&sa=D&source=docs&ust=1678775997628088&usg=AOvVaw3MRyV5L7ZrWBe4oxPP7SIN)
+
+    ## Median Income:
+    * [Median Income WA Counties 2013](https://data.census.gov/table?q=median+income&t=Earnings+(Individuals)&g=0400000US53,53$7950000&tid=ACSST1Y2013.S2001)
+    * [Median Income WA Counties 2014](https://data.census.gov/table?q=median+income&t=Earnings+(Individuals)&g=0400000US53,53$7950000&tid=ACSST1Y2014.S2001)
+    * [Median Income WA Counties 2015](https://data.census.gov/table?q=median+income&t=Earnings+(Individuals)&g=0400000US53,53$7950000&tid=ACSST1Y2015.S2001)
+    * [Median Income WA Counties 2016](https://data.census.gov/table?q=median+income&t=Earnings+(Individuals)&g=0400000US53,53$7950000&tid=ACSST1Y2016.S2001)
+    * [Median Income WA Counties 2017](https://data.census.gov/table?q=median+income&t=Earnings+(Individuals)&g=0400000US53,53$7950000&tid=ACSST1Y2017.S2001)
+
+    ## Employment Status:
+    * [Employment Status WA Counties 2013](https://data.census.gov/table?q=employment+status&g=0400000US53$7950000&tid=ACSST1Y2013.S2301)
+    * [Employment Status WA Counties 2014](https://data.census.gov/table?q=employment+status&g=0400000US53$7950000&tid=ACSST1Y2014.S2301)
+    * [Employment Status WA Counties 2015](https://data.census.gov/table?q=employment+status&g=0400000US53$7950000&tid=ACSST1Y2015.S2301)
+    * [Employment Status WA Counties 2016](https://data.census.gov/table?q=employment+status&g=0400000US53$7950000&tid=ACSST1Y2016.S2301)
+    * [Employment Status WA Counties 2017](https://data.census.gov/table?q=employment+status&g=0400000US53$7950000&tid=ACSST1Y2017.S2301)
 
     ''', className='markdown home')
 ], className='home-div')
