@@ -19,7 +19,6 @@ body {
     align-items: center;
     justify-content: center;
     font-family: 'Montserrat';
-    max-width: 1200px;
 }
 
 .dropdown {
@@ -34,6 +33,7 @@ body {
 
 .navbar {
     padding: 10px 0 30px 0;
+    width: auto;
 }
 
 .nav-buttons {
