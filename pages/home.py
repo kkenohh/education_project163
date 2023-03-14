@@ -36,8 +36,8 @@ layout = html.Div(children=[
     In addition, data regarding levels of educational attainment can provide
     critical information showing flaws and benefits of education programs
     currently in place. Being students im Washington, we are interested in
-    analyzing and predicting trends in educational achievment across groups as
-    well as considering implmentations to improve education for groups with
+    analyzing and predicting trends in educational achievement across groups as
+    well as considering implementations to improve education for groups with
     less documented and recorded data.
 
     ''', className='markdown home'),
@@ -48,7 +48,7 @@ layout = html.Div(children=[
     education level attained by different categories of ages, races, and PUMA
     regions; from 2013 to 2017 in Washington state. Each row within the dataset
     contains a column called "Population Estimate (Count)" which tells us the
-    total number of people for that group that attained a specfic level of
+    total number of people for that group that attained a specific level of
     education. The additional datasets that we used were source data from
     government censuses
 
