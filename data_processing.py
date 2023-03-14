@@ -262,13 +262,7 @@ def clean_employment_data(file):
         data = data.drop(range(0, 31))
         data = data.drop([35, 36])
 
-    # update the dataframe with float values for columns with percentage
-    change_cols = data.filter(regex=r'([a-zA-z]+|\W+)ploy').columns
-    data[change_cols] = data[change_cols].apply(lambda num: num.str.rstrip('%').astype('float') / 100.0)
-
-    # update the dataframe with float values for columns with string numbers
-    num_cols = data.filter(regex=r'([a-zA-z]+|\W+)Total').columns
-    data[num_cols] = data[num_cols].apply(lambda num: num.str.replace(',', '').astype(float))
+    data = convert_string(data)
 
     # rename columns
     data = rename_cols('Total', data)
@@ -318,7 +312,9 @@ def clean_employment_data(file):
 
     # add other cols
     other_puma = data[data.filter(regex='Label|Chelan|Clallam|Cowlitz|Grant|Grays|Klickitat|Skagit|Okanogan|Whatcom|Whitman').columns]
-    employment_status = pd.merge(employment_status, other_puma, left_on='Attainment', right_on='Label (Grouping)')
+    employment_status = pd.merge(employment_status, other_puma,
+                                 left_on='Attainment',
+                                 right_on='Label (Grouping)')
 
     # reformat df
     stacked = employment_status.set_index('Attainment')
@@ -326,10 +322,13 @@ def clean_employment_data(file):
     new_format = new_format.to_frame()
     new_format = new_format.reset_index()
     new_format.columns = ['Attainment', 'Regions', 'Count']
-    new_format['Status'] = new_format['Regions'].apply(lambda x: x.split(' ')[-1])
-    new_format['Regions'] = new_format['Regions'].apply(lambda x: x.rsplit(' ', 1)[0])
+    new_format['Status'] = new_format['Regions'].apply(lambda x:
+                                                       x.split(' ')[-1])
+    new_format['Regions'] = new_format['Regions'].apply(lambda x:
+                                                        x.rsplit(' ', 1)[0])
 
-    new_df = new_format.pivot(index=['Attainment', 'Regions'], columns='Status', values='Count')
+    new_df = new_format.pivot(index=['Attainment', 'Regions'],
+                              columns='Status', values='Count')
     new_df = new_df.reset_index()
     new_df = new_df.drop(new_df.columns[2], axis=1)
     new_df = new_df.rename(columns={'Total': 'Total in labor force'})
@@ -337,7 +336,9 @@ def clean_employment_data(file):
     # clean attainment columns values
     pattern = r'.*\xa0(.*)'
     replacement = r'\1'
-    new_df['Attainment'] = new_df['Attainment'].str.replace(pattern, replacement, regex=True)
+    new_df['Attainment'] = new_df['Attainment'].str.replace(pattern,
+                                                            replacement,
+                                                            regex=True)
 
     name = file.split('.')[0].split('/')[1].split('_')[1]
 
@@ -348,6 +349,15 @@ def clean_employment_data(file):
     new_df.to_csv(new_file, index=False)
     print('Successfully written to CSV file')
 
+def convert_string(data) -> pd.DataFrame:
+    # update the dataframe with float values for columns with percentage
+    change_cols = data.filter(regex=r'([a-zA-z]+|\W+)ploy').columns
+    data[change_cols] = data[change_cols].apply(lambda num: num.str.rstrip('%').astype('float') / 100.0)
+
+    # update the dataframe with float values for columns with string numbers
+    num_cols = data.filter(regex=r'([a-zA-z]+|\W+)Total').columns
+    data[num_cols] = data[num_cols].apply(lambda num: num.str.replace(',', '').astype(float))
+    return data
 
 def sum_puma(region, status, new_df, old_df):
     puma = old_df[old_df.filter(like=region).columns]
@@ -355,7 +365,8 @@ def sum_puma(region, status, new_df, old_df):
         puma_status = puma[puma.filter(like=word).columns].copy()
         puma_status[region + ' County ' + word] = puma_status.sum(axis=1)
 
-        new_df[region + ' County ' + word] = puma_status[region + ' County ' + word]
+        new_df[region + ' County ' + word] = puma_status[region +
+                                                         ' County ' + word]
 
 
 def rename_cols(col, df):
@@ -364,7 +375,8 @@ def rename_cols(col, df):
     regions = list(regions)
 
     new_cols = [r + ' ' + col for r in regions]
-    df = df.rename(columns={old_col: new_col for old_col, new_col in zip(list(old_cols.columns), new_cols)})
+    df = df.rename(columns={old_col: new_col for old_col,
+                            new_col in zip(list(old_cols.columns), new_cols)})
     return df
 
 
@@ -380,7 +392,7 @@ def merge_data() -> pd.DataFrame:
          'Professional or Doctorate degree'],
         'Bachelor\'s degree or higher')
     edu_data = edu[['Attainment Label', 'Puma Label', 'year',
-                       'Estimate Population']]
+                    'Estimate Population']]
     edu_data = edu_data.rename(columns={'Attainment Label': 'Attainment',
                                         'Puma Label': 'Regions',
                                         'year': 'Year'})
@@ -412,8 +424,10 @@ def merge_data() -> pd.DataFrame:
 def get_joined_employment_data() -> pd.DataFrame:
     return pd.read_csv('data/employment/joined_employment_status.csv')
 
-def get_employment_data()-> pd.DataFrame:
+
+def get_employment_data() -> pd.DataFrame:
     return pd.read_csv('data/employment/employment_status.csv')
+
 
 # cleaning smoking.csv
 def clean_smoking_data() -> pd.DataFrame:
