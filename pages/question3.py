@@ -57,7 +57,7 @@ layout = html.Div(children=[
 )
 def employment_status_by_attainment(region):
     unemployed_rate = JOINED_EMPLOYMENT_DF[['Regions', 'Attainment', 'Year',
-                                     'Unemployed Rate']]
+                                            'Unemployed Rate']]
 
     if 'Select All' not in region:
         region_mask = unemployed_rate['Regions'].isin(list(region))
@@ -65,8 +65,10 @@ def employment_status_by_attainment(region):
     else:
         employ = EMPLOYMENT_DF[['Attainment', 'Year', 'Total in labor force',
                                 'Unemploy']]
-        employ = EMPLOYMENT_DF.groupby(['Attainment', 'Year'], as_index=False).sum()
-        employ['Unemployed Rate'] = (employ['Unemploy'] / employ['Total in labor force']) * 100
+        employ = EMPLOYMENT_DF.groupby(['Attainment', 'Year'],
+                                       as_index=False).sum()
+        employ['Unemployed Rate'] = (employ['Unemploy'] /
+                                     employ['Total in labor force']) * 100
         unemployed_rate = employ
 
     fig = px.line(unemployed_rate, x='Year', y='Unemployed Rate',
@@ -88,7 +90,7 @@ def employment_status_by_attainment(region):
 )
 def in_work_force_ratio(attainment):
     df = JOINED_EMPLOYMENT_DF[['Attainment', 'Year', 'Estimate Population',
-                        'Total in labor force']]
+                               'Total in labor force']]
     degree_mask = df['Attainment'].isin(list(attainment))
     df = df[degree_mask]
     df = df.groupby(['Year', 'Attainment'], as_index=False).sum()
