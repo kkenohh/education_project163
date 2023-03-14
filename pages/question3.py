@@ -46,7 +46,7 @@ layout = html.Div(children=[
 
         [Add analysis].
         ''', className='markdown')
-    ], className='question-one')
+    ], className='question')
 ], className='whole-page')
 
 
@@ -75,9 +75,8 @@ def employment_status_by_attainment(region):
                   'Attainment by Region 2013 - 2017',
                   labels={'Year': 'Year',
                           'Regions': 'Region'})
-    y = len(region) * -.2 + -.2
     fig.update_layout(legend=dict(orientation='h', yanchor='bottom',
-                                  y=y, xanchor='left', x=0))
+                                  y=-.5, xanchor='left', x=0))
     fig.update_layout(title_xanchor='center', title_x=.5)
     return fig
 
@@ -97,8 +96,7 @@ def in_work_force_ratio(attainment):
                                   'Total in labor force'],
                  barmode='group',
                  title='Ratio of population in Labor Force per Attainment')
-    y = len(attainment) * -.07 + -.2
     fig.update_layout(legend=dict(orientation='h', yanchor='bottom',
-                                  y=y, xanchor='left', x=0))
+                                  y=-.5, xanchor='left', x=0))
     fig.update_layout(title_xanchor='center', title_x=.5)
     return fig
