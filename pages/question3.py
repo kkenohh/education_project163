@@ -41,8 +41,52 @@ layout = html.Div(children=[
         ], className='graphs'),
         dcc.Markdown('''
         # What did we find?
+        The questions we are trying to answer with this graph are:
 
-        [Add analysis].
+        ***- Is there any correlation between educational attainment and
+        the unemployment rate in the 5 years interval 2013-2017? Especially
+        does having higher educational attainment result in lower unemployment
+        rate?***
+
+        To answer the first question, we can look at the first graph. When
+        looking at each PUMA region individually, we observed that
+        people with "Less than high school graduate" degree consistently
+        had the highest unemployment rate out of the four educational
+        attainment levels, whereas those with "Bachelor's degree or higher"
+        had the lowest unemployment rate across all PUMA regions in Washington
+        State between 2013 and 2017.
+
+        Looking at King County specifically, we found that the unemployment
+        rate for individuals with "Less than high school graduate" degree saw
+        a sharp decline, followed by a gradual increase from 2014 to 2016, and
+        then another significant decrease from 2016 to 2017. The trend for the
+        unemployment rate for individuals with "High school or equivalent"
+        degree and "Some college or associate's degree" was similar during
+        this time interval, with a slight decrease from 2013 to 2014 and 2015
+        to 2016, and a slight increase in 2014-2015 and 2016-2017. Conversely,
+        the unemployment rate for individuals with "Bachelor's degree or
+        higher" steadily decreased throughout the 5-year period. Although there
+        are some big changes in unemployment rate for each educational
+        attainment, the general trend still matches with the general trends
+        across all PUMA regions in Washington State.
+
+        All in all, looking at our graph, we predict that there might be a
+        relationship between education and unemployment rate, where people
+        with higher educational attainment tend to have lower unemployment
+        rate than those with less than high school attainment level.
+
+        ***- Which educational attainment has the highest ratio of people
+        in the labor force?***
+
+        By examining the second graph, it is noticeable that the number of
+        individuals who have attained a "Less than high school" degree is the
+        smallest when compared to the other three educational attainment levels
+        from 2013 to 2017. This could be due to the fact that individuals with
+        a "Bachelor's degree or higher" may choose to continue their education,
+        thus causing this low ratio. On the other hand, the ratios for the
+        other three educational attainment levels are relatively similar, where
+        all three are much higher than the number of people with "Less than
+        a high school" degree.
         ''', className='markdown')
     ], className='question')
 ], className='whole-page')
