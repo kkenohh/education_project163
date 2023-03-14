@@ -39,6 +39,21 @@ layout = html.Div(children=[
 
 # Top graph
 def health_to_county(county):
+    '''
+    Takes in a list of counties and displays a bar graph showing the
+    percentage of people within the given counties that reported a given
+    health condition.
+    Parameters:
+
+    Returns:
+    '''
     df = HEALTH_DF
+    display_values = ['Smoking Count', 'Binge Drinking Count',
+                      'Poor Mental Health Count', 'Diabetes Count']
     if 'Select All' not in county:
         county_mask = df['County'].isin(list(county))
+        df = df[county_mask]
+        graph = px.bar(df[county_mask], x='County', y=display_values)
+    else:
+        graph = px.bar(df, x='County', y=display_values)
+    return graph
