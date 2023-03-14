@@ -38,6 +38,7 @@ You will need the following data:
     - Contains original data from the United States census regarding employment status in 2016 
 - *income_2017.csv* => data/income_og/income_2017.csv
     - Contains original data from the United States census regarding employment status in 2017 
+> **Installation Line:** All original data attained from the [WA data catalog](https://catalog.data.gov/dataset/educational-attainment-of-washington-population-by-age-race-ethnicity-and-puma-region) and the [United States Census Bureau](https://data.census.gov/table?q=median+income&t=Earnings+(Individuals)&g=0400000US53,53$7950000&tid=ACSST1Y2013.S2001)
 
 ## Instructions
 Follow the link [our site](http://127.0.0.1:8050/).
