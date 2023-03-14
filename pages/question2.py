@@ -24,8 +24,8 @@ region_dropdown = dcc.Dropdown(options=REGIONS, value=[],
 
 # Create layout for this page
 layout = html.Div(children=[
-    html.H1(children='Education Attainment Over Time, \
-            per Race (in Washington)', className='graph-header'),
+    html.H1(children='Median Income Over Time per County\
+            (in Washington)', className='graph-header'),
     html.Div(children=[
         html.Div([
             region_dropdown,
