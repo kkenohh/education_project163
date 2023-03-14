@@ -103,5 +103,4 @@ def workforce_ratio(attainment):
     df = df[degree_mask]
     df = df.groupby(['Year'], as_index=False).sum()
     print(df.head)
-    return f'Out of {df["Estimate Population"].mean()}\
-            average people per year.'
+    return f'Out of around {df["Estimate Population"].mean()} people.'
